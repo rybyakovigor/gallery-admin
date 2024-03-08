@@ -3,6 +3,9 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 // Pages
 import { Page } from './pages';
+import Works from '../pages/works/Works';
+import Materials from '../pages/materials/Materials';
+import FramingTypes from '../pages/framing-types/FramingTypes';
 
 // Layouts
 import MainLayout from '../layouts/main/Main.layout';
@@ -18,15 +21,15 @@ export const router = createBrowserRouter([
       },
       {
         path: Page.WORKS,
-        element: <div>Works</div>,
+        element: <Works />,
       },
       {
         path: Page.MATERIALS,
-        element: <div>Materials</div>,
+        element: <Materials />,
       },
       {
         path: Page.FRAMING_TYPES,
-        element: <div>Framing Types</div>,
+        element: <FramingTypes />,
       },
     ],
   },
