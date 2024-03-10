@@ -54,12 +54,6 @@
         "threshold": 2
       }
     ],
-    "react-refresh/only-export-components": [
-      "warn",
-      {
-        "allowConstantExport": true
-      }
-    ],
     "prettier/prettier": "off"
   },
   "ignorePatterns": [

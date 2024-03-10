@@ -25,3 +25,6 @@ dist-ssr
 
 # styles definitions
 *.css.d.ts
+
+# env
+.env
