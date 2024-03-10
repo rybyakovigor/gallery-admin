@@ -11,7 +11,7 @@ import { MaterialsStoreType } from '~/domain/materials/materials.store';
 import { Material } from '~/domain/materials/types/material';
 
 // Utils
-import { renderColumns } from './table-columns';
+import { renderColumns } from '~/ui/common/components/table-columns/table-columns';
 
 export const useMaterialsService = (materialsStore: MaterialsStoreType): UseMaterialsServiceReturnType => {
   const { materials, fetchMaterials, deleteMaterial, createMaterial, updateMaterial } = materialsStore;

@@ -6,7 +6,7 @@ import { Button, Modal, Space, Table, Typography } from 'antd';
 import framingTypesStore from '~/domain/framing-types/framing-types.store';
 
 // Components
-import MaterialForm from './form/Form';
+import TitleForm from '~/ui/common/components/form/Form';
 
 // Hooks
 import { useFramingTypesService } from './useFramingTypesService';
@@ -53,7 +53,7 @@ const FramingTypes = (): React.ReactElement => {
         cancelText="Отменить"
         onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
       >
-        <MaterialForm form={form} ref={inputRef} />
+        <TitleForm form={form} ref={inputRef} />
       </Modal>
     </Space>
   );

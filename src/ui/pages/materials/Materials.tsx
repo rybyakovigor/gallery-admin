@@ -6,7 +6,7 @@ import { Button, Modal, Space, Table, Typography } from 'antd';
 import materialsStore from '~/domain/materials/materials.store';
 
 // Components
-import MaterialForm from './form/Form';
+import TitleForm from '~/ui/common/components/form/Form';
 
 // Hooks
 import { useMaterialsService } from './useMaterialsService';
@@ -47,7 +47,7 @@ const Materials = (): React.ReactElement => {
         cancelText="Отменить"
         onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
       >
-        <MaterialForm form={form} ref={inputRef} />
+        <TitleForm form={form} ref={inputRef} />
       </Modal>
     </Space>
   );

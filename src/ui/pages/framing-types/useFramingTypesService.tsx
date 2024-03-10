@@ -11,7 +11,7 @@ import { FramingType } from '~/domain/framing-types/types/framing-types';
 import { FramingTypesStoreType } from '~/domain/framing-types/framing-types.store';
 
 // Utils
-import { renderColumns } from './table-columns';
+import { renderColumns } from '~/ui/common/components/table-columns/table-columns';
 
 export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType): UseMaterialsServiceReturnType => {
   const { framingTypes, fetchFramingTypes, deleteFramingTypes, createFramingTypes, updateFramingTypes } =
