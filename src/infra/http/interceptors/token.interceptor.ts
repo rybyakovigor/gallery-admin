@@ -1,9 +1,12 @@
 // Core
 import { AxiosInstance } from 'axios';
 
+// Stores
+import authStore from '~/domain/auth/auth.store';
+
 export const addRequestWithTokenInterceptor = (httpClient: AxiosInstance): number => {
   return httpClient.interceptors.request.use(function (config) {
-    const key = import.meta.env.VITE_AUTH_KEY;
+    const key = authStore.getApiKey();
     if (key) {
       config.headers.auth = `${key}`;
     }

@@ -6,14 +6,26 @@ import { Page } from './pages';
 import Works from '../pages/works/Works';
 import Materials from '../pages/materials/Materials';
 import FramingTypes from '../pages/framing-types/FramingTypes';
+import Auth from '../pages/auth/Auth';
 
 // Layouts
 import MainLayout from '../layouts/main/Main.layout';
 
+// Components
+import ProtectedRoute from '../common/components/protected-route/ProtectedRoute';
+
 export const router = createBrowserRouter([
   {
+    path: Page.AUTH,
+    element: <Auth />,
+  },
+  {
     path: Page.ROOT,
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
