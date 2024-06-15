@@ -2,7 +2,7 @@
 import httpClient from '~/infra/http/client';
 
 // Types
-import { CreateOrUpdateFramingType, FramingType } from './framing-type.type';
+import { CreateFramingType, FramingType, UpdateFramingType } from '~/domain/framing-types/framing-types.schema';
 
 class FramingTypesApi {
   private readonly path = 'framing-types';
@@ -18,13 +18,13 @@ class FramingTypesApi {
     return data;
   }
 
-  public async create(body: CreateOrUpdateFramingType): Promise<FramingType> {
+  public async create(body: CreateFramingType): Promise<FramingType> {
     const { data } = await httpClient.post<FramingType>(`${this.path}`, body);
 
     return data;
   }
 
-  public async update(id: string, body: CreateOrUpdateFramingType): Promise<FramingType> {
+  public async update(id: string, body: UpdateFramingType): Promise<FramingType> {
     const { data } = await httpClient.put<FramingType>(`${this.path}/${id}`, body);
 
     return data;
