@@ -5,7 +5,7 @@ import { makeAutoObservable } from 'mobx';
 import framingTypesApi from '~/data/framing-types/framing-types.api';
 
 // Types
-import { FramingType } from './types/framing-types';
+import { CreateFramingType, FramingType, UpdateFramingType } from './framing-types.schema';
 
 class FramingTypesStore {
   public framingTypes: FramingType[] = [];
@@ -23,7 +23,7 @@ class FramingTypesStore {
     }
   }
 
-  public async createFramingTypes(framingType: FramingType): Promise<void> {
+  public async createFramingTypes(framingType: CreateFramingType): Promise<void> {
     try {
       const createdFramingType = await framingTypesApi.create(framingType);
       this.framingTypes = [...this.framingTypes, createdFramingType];
@@ -32,11 +32,11 @@ class FramingTypesStore {
     }
   }
 
-  public async updateFramingTypes(framingType: FramingType): Promise<void> {
+  public async updateFramingTypes(framingType: UpdateFramingType): Promise<void> {
     try {
-      await framingTypesApi.update(framingType.id, framingType);
+      const updatedFramingType = await framingTypesApi.update(framingType.id, framingType);
       const index = this.framingTypes.findIndex((item) => item.id === framingType.id);
-      this.framingTypes = this.framingTypes.map((item, i) => (i === index ? framingType : item));
+      this.framingTypes = this.framingTypes.map((item, i) => (i === index ? updatedFramingType : item));
     } catch (error) {
       throw new Error('Ошибка при обновлении оформления');
     }

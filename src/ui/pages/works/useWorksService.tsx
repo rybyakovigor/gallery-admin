@@ -7,27 +7,42 @@ import { useRequest } from '~/domain/shared/hooks/useRequest';
 
 // Types
 import { ColumnType } from 'antd/es/table';
+import { Work } from '~/domain/works/work.schema';
+import { WorksStoreType } from '~/domain/works/works.store';
+import { Material } from '~/domain/materials/material.schema';
 import { FramingType } from '~/domain/framing-types/framing-types.schema';
-import { FramingTypesStoreType } from '~/domain/framing-types/framing-types.store';
 
 // Utils
 import { renderColumns } from '~/ui/common/components/table-columns/table-columns';
+import framingTypesStore from '~/domain/framing-types/framing-types.store';
+import materialsStore from '~/domain/materials/materials.store';
 
-export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType): UseMaterialsServiceReturnType => {
-  const { framingTypes, fetchFramingTypes, deleteFramingTypes, createFramingTypes, updateFramingTypes } =
-    framingTypesStore;
+interface WorkForm extends Omit<Work, 'id' | 'created_at' | 'updated_at' | 'materials' | 'framing_types'> {
+  materials: string[];
+  framing_types: string[];
+}
 
-  const { request, isLoading, error } = useRequest();
-  const [form] = Form.useForm<{ title: string }>();
+export const useWorksService = (worksStore: WorksStoreType): UseWorksServiceReturnType => {
+  const { works, fetchMWorks, deleteWork, createWork, updateWork } = worksStore;
+  const { fetchFramingTypes, framingTypes } = framingTypesStore;
+  const { fetchMaterials, materials } = materialsStore;
+
+  const { request: worksRequest, isLoading, error } = useRequest();
+  const { request: materialsRequest } = useRequest();
+  const { request: framingTypesRequest } = useRequest();
+
+  const [form] = Form.useForm<WorkForm>();
   const inputRef = useRef<InputRef>(null);
 
   const [mode, setMode] = useState<'create' | 'update'>('create');
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const [currentMaterial, setCurrentMaterial] = useState<FramingType | null>(null);
+  const [currentWork, setCurrentWork] = useState<Work | null>(null);
 
   useEffect(() => {
-    request(fetchFramingTypes, {}, () => {});
+    framingTypesRequest(fetchFramingTypes, {}, () => {});
+    materialsRequest(fetchMaterials, {}, () => {});
+    worksRequest(fetchMWorks, {}, () => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -40,16 +55,37 @@ export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType)
 
   const openCreateModalHandler = (): void => {
     setMode('create');
+    form.setFieldsValue({
+      title: '',
+      description: '',
+      width: 0,
+      height: 0,
+      price: 0,
+      is_sold: false,
+      materials: [],
+      framing_types: [],
+      images: [],
+    });
     setIsCreateModalOpen(true);
     setTimeout(() => {
       inputRef.current?.focus({ cursor: 'end' });
     }, 500);
   };
 
-  const openUpdateModalHandler = (data: FramingType): void => {
+  const openUpdateModalHandler = (data: Work): void => {
     setMode('update');
-    setCurrentMaterial(data);
-    form.setFieldsValue({ title: data.title });
+    setCurrentWork(data);
+    form.setFieldsValue({
+      title: data.title,
+      description: data.description,
+      width: data.width,
+      height: data.height,
+      price: data.price,
+      is_sold: data.is_sold,
+      materials: data.materials.map((m) => m.id),
+      framing_types: data.framing_types.map((f) => f.id),
+      images: data.images,
+    });
     setIsUpdateModalOpen(true);
     setTimeout(() => {
       inputRef.current?.focus({ cursor: 'end' });
@@ -66,11 +102,16 @@ export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType)
     form.resetFields();
   };
 
-  const createMaterialHandler = (): void => {
+  const createWorkHandler = (): void => {
     form
       .validateFields()
       .then((values) => {
-        request(createFramingTypes, values, () => {
+        const body = {
+          ...values,
+          images: values.images.map((image) => image.id),
+        };
+
+        worksRequest(createWork, body, () => {
           if (!error) {
             closeCreateModalHandler();
           }
@@ -79,11 +120,15 @@ export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType)
       .catch(() => {});
   };
 
-  const updateMaterialHandler = (): void => {
+  const updateWorkHandler = (): void => {
     form
       .validateFields()
       .then((values) => {
-        request(updateFramingTypes, { ...currentMaterial, ...values }, () => {
+        const body = {
+          ...values,
+          images: values.images.map((image) => image.id),
+        };
+        worksRequest(updateWork, { ...currentWork, ...body }, () => {
           if (!error) {
             closeUpdateModalHandler();
           }
@@ -92,8 +137,8 @@ export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType)
       .catch(() => {});
   };
 
-  const deleteMaterialHandler = (data: FramingType): void => {
-    request(deleteFramingTypes, data.id, () => {});
+  const deleteMaterialHandler = (data: Work): void => {
+    worksRequest(deleteWork, data.id, () => {});
   };
 
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
@@ -115,7 +160,9 @@ export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType)
   const [columns] = useState(renderColumns(openUpdateModalHandler, deleteMaterialHandler));
 
   return {
+    works,
     framingTypes,
+    materials,
     isLoading,
     columns,
     mode,
@@ -124,18 +171,20 @@ export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType)
     openCreateModalHandler,
     isCreateModalOpen,
     isUpdateModalOpen,
-    createMaterialHandler,
-    updateMaterialHandler,
+    createWorkHandler,
+    updateWorkHandler,
     closeCreateModalHandler,
     closeUpdateModalHandler,
     isSubmitDisabled,
   };
 };
 
-interface UseMaterialsServiceReturnType {
+interface UseWorksServiceReturnType {
+  works: Work[];
   framingTypes: FramingType[];
+  materials: Material[];
   isLoading: boolean;
-  columns: ColumnType<FramingType>[];
+  columns: ColumnType<Work>[];
   mode: 'create' | 'update';
   form: FormInstance;
   inputRef: React.RefObject<InputRef>;
@@ -144,7 +193,7 @@ interface UseMaterialsServiceReturnType {
   isUpdateModalOpen: boolean;
   closeCreateModalHandler: () => void;
   closeUpdateModalHandler: () => void;
-  createMaterialHandler: () => void;
-  updateMaterialHandler: () => void;
+  createWorkHandler: () => void;
+  updateWorkHandler: () => void;
   isSubmitDisabled: boolean;
 }

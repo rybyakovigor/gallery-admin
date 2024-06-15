@@ -26,6 +26,7 @@ const FramingTypes = (): React.ReactElement => {
     updateMaterialHandler,
     closeCreateModalHandler,
     closeUpdateModalHandler,
+    isSubmitDisabled,
   } = useFramingTypesService(framingTypesStore);
 
   return (
@@ -52,6 +53,7 @@ const FramingTypes = (): React.ReactElement => {
         okText="Сохранить"
         cancelText="Отменить"
         onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
+        okButtonProps={{ disabled: isSubmitDisabled, loading: isLoading }}
       >
         <TitleForm form={form} ref={inputRef} />
       </Modal>

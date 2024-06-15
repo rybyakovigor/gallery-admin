@@ -8,7 +8,7 @@ import { useRequest } from '~/domain/shared/hooks/useRequest';
 // Types
 import { ColumnType } from 'antd/es/table';
 import { MaterialsStoreType } from '~/domain/materials/materials.store';
-import { Material } from '~/domain/materials/types/material';
+import { Material } from '~/domain/materials/material.schema';
 
 // Utils
 import { renderColumns } from '~/ui/common/components/table-columns/table-columns';
@@ -95,6 +95,22 @@ export const useMaterialsService = (materialsStore: MaterialsStoreType): UseMate
     request(deleteMaterial, data.id, () => {});
   };
 
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+
+  const values = Form.useWatch([], form);
+
+  useEffect(() => {
+    form
+      .validateFields({ validateOnly: true })
+      .then((formValues) => {
+        setIsSubmitDisabled(!Object.values(formValues).length); // check keys to handle init state
+      })
+      .catch(() => {
+        setIsSubmitDisabled(true);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values]);
+
   const [columns] = useState(renderColumns(openUpdateModalHandler, deleteMaterialHandler));
 
   return {
@@ -111,6 +127,7 @@ export const useMaterialsService = (materialsStore: MaterialsStoreType): UseMate
     updateMaterialHandler,
     closeCreateModalHandler,
     closeUpdateModalHandler,
+    isSubmitDisabled,
   };
 };
 
@@ -128,4 +145,5 @@ interface UseMaterialsServiceReturnType {
   closeUpdateModalHandler: () => void;
   createMaterialHandler: () => void;
   updateMaterialHandler: () => void;
+  isSubmitDisabled: boolean;
 }

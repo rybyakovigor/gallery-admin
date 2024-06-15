@@ -2,7 +2,7 @@
 import httpClient from '~/infra/http/client';
 
 // Types
-import { CreateOrUpdateMaterial, Material } from './material.type';
+import { CreateMaterial, Material, UpdateMaterial } from '~/domain/materials/material.schema';
 
 class MaterialsApi {
   private readonly path = 'materials';
@@ -18,13 +18,13 @@ class MaterialsApi {
     return data;
   }
 
-  public async create(body: CreateOrUpdateMaterial): Promise<Material> {
+  public async create(body: CreateMaterial): Promise<Material> {
     const { data } = await httpClient.post<Material>(`${this.path}`, body);
 
     return data;
   }
 
-  public async update(id: string, body: CreateOrUpdateMaterial): Promise<Material> {
+  public async update(id: string, body: UpdateMaterial): Promise<Material> {
     const { data } = await httpClient.put<Material>(`${this.path}/${id}`, body);
 
     return data;

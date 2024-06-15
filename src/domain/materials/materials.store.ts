@@ -5,7 +5,7 @@ import { makeAutoObservable } from 'mobx';
 import materialsApi from '~/data/materials/materials.api';
 
 // Types
-import { Material } from './types/material';
+import { CreateMaterial, Material, UpdateMaterial } from './material.schema';
 
 class MaterialsStore {
   public materials: Material[] = [];
@@ -23,7 +23,7 @@ class MaterialsStore {
     }
   }
 
-  public async createMaterial(material: Material): Promise<void> {
+  public async createMaterial(material: CreateMaterial): Promise<void> {
     try {
       const createdMaterial = await materialsApi.create(material);
       this.materials = [...this.materials, createdMaterial];
@@ -32,11 +32,11 @@ class MaterialsStore {
     }
   }
 
-  public async updateMaterial(material: Material): Promise<void> {
+  public async updateMaterial(material: UpdateMaterial): Promise<void> {
     try {
-      await materialsApi.update(material.id, material);
+      const updatedMaterial = await materialsApi.update(material.id, material);
       const index = this.materials.findIndex((item) => item.id === material.id);
-      this.materials = this.materials.map((item, i) => (i === index ? material : item));
+      this.materials = this.materials.map((item, i) => (i === index ? updatedMaterial : item));
     } catch (error) {
       throw new Error('Ошибка при обновлении материала');
     }

@@ -26,6 +26,7 @@ const Materials = (): React.ReactElement => {
     updateMaterialHandler,
     closeCreateModalHandler,
     closeUpdateModalHandler,
+    isSubmitDisabled,
   } = useMaterialsService(materialsStore);
 
   return (
@@ -46,6 +47,7 @@ const Materials = (): React.ReactElement => {
         okText="Сохранить"
         cancelText="Отменить"
         onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
+        okButtonProps={{ disabled: isSubmitDisabled, loading: isLoading }}
       >
         <TitleForm form={form} ref={inputRef} />
       </Modal>
