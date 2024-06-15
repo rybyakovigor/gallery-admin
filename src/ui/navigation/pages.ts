@@ -3,4 +3,5 @@ export enum Page {
   WORKS = '/works',
   MATERIALS = '/materials',
   FRAMING_TYPES = '/framing-types',
+  AUTH = '/auth',
 }
