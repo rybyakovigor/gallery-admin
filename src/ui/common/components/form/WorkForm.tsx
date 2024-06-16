@@ -29,11 +29,7 @@ const TitleForm = React.forwardRef<InputRef, PropsType>(
         <Form.Item<FieldType> label="Название" name="title" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
           <Input ref={inputRef} />
         </Form.Item>
-        <Form.Item<FieldType>
-          label="Описание"
-          name="description"
-          rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}
-        >
+        <Form.Item<FieldType> label="Описание" name="description">
           <TextArea />
         </Form.Item>
         <Form.Item<FieldType> label="Ширина" name="width" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
@@ -91,11 +87,10 @@ const TitleForm = React.forwardRef<InputRef, PropsType>(
             }}
           />
         </Form.Item>
-        <Form.Item<FieldType>
-          label="Продано"
-          name="is_sold"
-          rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}
-        >
+        <Form.Item<FieldType> label="Продано" name="is_sold">
+          <Switch />
+        </Form.Item>
+        <Form.Item<FieldType> label="Показывать" name="is_active">
           <Switch />
         </Form.Item>
       </Form>

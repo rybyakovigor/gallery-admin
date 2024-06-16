@@ -1,4 +1,7 @@
+// Core
 import { z } from 'zod';
+
+// Schemas
 import { MaterialSchema } from '../materials/material.schema';
 import { FramingTypeSchema } from '../framing-types/framing-types.schema';
 import { FileSchema } from '../files/file.schema';
@@ -8,6 +11,7 @@ const description = z.string();
 const dimension = z.number().int();
 const price = z.number().int();
 const is_sold = z.boolean();
+const is_active = z.boolean();
 const materials = z.array(MaterialSchema);
 const framing_types = z.array(FramingTypeSchema);
 const images = z.array(FileSchema);
@@ -19,6 +23,7 @@ const BaseWorkSchema = z.object({
   height: dimension,
   price,
   is_sold,
+  is_active,
   materials,
   framing_types,
   images,

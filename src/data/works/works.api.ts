@@ -10,7 +10,16 @@ import { AppFile } from '~/domain/files/file.schema';
 interface WorkFromServer
   extends Pick<
     Work,
-    'id' | 'title' | 'description' | 'width' | 'height' | 'price' | 'is_sold' | 'created_at' | 'updated_at'
+    | 'id'
+    | 'title'
+    | 'description'
+    | 'width'
+    | 'height'
+    | 'price'
+    | 'is_sold'
+    | 'is_active'
+    | 'created_at'
+    | 'updated_at'
   > {
   materials: { material: Material }[];
   framing_types: { framing_type: FramingType }[];
