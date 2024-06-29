@@ -7,6 +7,7 @@ import Works from '../pages/works/Works';
 import Materials from '../pages/materials/Materials';
 import FramingTypes from '../pages/framing-types/FramingTypes';
 import Auth from '../pages/auth/Auth';
+import Feedback from '../pages/feedback/Feedback';
 
 // Layouts
 import MainLayout from '../layouts/main/Main.layout';
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: Page.FRAMING_TYPES,
         element: <FramingTypes />,
+      },
+      {
+        path: Page.FEEDBACK,
+        element: <Feedback />,
       },
     ],
   },

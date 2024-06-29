@@ -7,6 +7,7 @@ import {
   HddOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  MailOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Button } from 'antd';
 
@@ -47,6 +48,12 @@ const MainLayout = (): React.ReactNode => {
               icon: <BorderOutlined />,
               label: 'Оформление',
               onClick: () => navigation(Page.FRAMING_TYPES),
+            },
+            {
+              key: Page.FEEDBACK,
+              icon: <MailOutlined />,
+              label: 'Обратная связь',
+              onClick: () => navigation(Page.FEEDBACK),
             },
           ]}
         />
