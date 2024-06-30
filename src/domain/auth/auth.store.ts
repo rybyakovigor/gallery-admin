@@ -7,6 +7,11 @@ class AuthStore {
   }
 
   public login(key: string): void {
+    // eslint-disable-next-line no-console
+    console.log(key, import.meta.env.VITE_AUTH_KEY);
+    // eslint-disable-next-line no-console
+    console.log(key === import.meta.env.VITE_AUTH_KEY);
+
     if (key !== import.meta.env.VITE_AUTH_KEY) {
       throw new Error('Неверный ключ');
     }
