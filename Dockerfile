@@ -19,5 +19,6 @@ FROM nginx:1.27.0-alpine
 
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist /var/www/html/
+COPY --from=builder /app/.env /var/www/html/.env
 
 ENTRYPOINT ["nginx","-g","daemon off;"]
