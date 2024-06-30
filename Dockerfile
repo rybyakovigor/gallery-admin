@@ -9,6 +9,9 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
+RUN echo "VITE_API_URL=${VITE_API_URL}" >> .env
+RUN echo "VITE_AUTH_KEY=${VITE_AUTH_KEY}" >> .env
+
 COPY . ./
 RUN yarn build
 
