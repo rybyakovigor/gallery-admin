@@ -19,7 +19,7 @@ const Auth = (): React.ReactElement => {
   const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
     try {
       login(values.key);
-      navigate(Page.ROOT);
+      navigate(Page.WORKS);
     } catch (error) {
       message.error((error as Error).message);
     }

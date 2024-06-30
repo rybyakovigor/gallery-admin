@@ -14,11 +14,16 @@ import MainLayout from '../layouts/main/Main.layout';
 
 // Components
 import ProtectedRoute from '../common/components/protected-route/ProtectedRoute';
+import UnprotectedRoute from '../common/components/unprotected-route/UnprotectedRoute';
 
 export const router = createBrowserRouter([
   {
     path: Page.AUTH,
-    element: <Auth />,
+    element: (
+      <UnprotectedRoute>
+        <Auth />
+      </UnprotectedRoute>
+    ),
   },
   {
     path: Page.ROOT,
