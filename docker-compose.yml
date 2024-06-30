@@ -1,0 +1,11 @@
+services:
+  admin-panel:
+    build:
+      context: .
+    container_name: admin-panel
+    environment:
+      - VITE_API_URL=${VITE_API_URL}
+      - VITE_AUTH_KEY=${VITE_AUTH_KEY}
+    restart: always
+    ports:
+      - 7778:80
