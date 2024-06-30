@@ -18,11 +18,6 @@ setTimeout(() => {
 });
 
 function App(): React.ReactElement {
-  // eslint-disable-next-line no-console
-  console.log(import.meta.env.VITE_API_URL);
-  // eslint-disable-next-line no-console
-  console.log(import.meta.env.VITE_AUTH_KEY);
-
   return <RouterProvider router={router} />;
 }
 

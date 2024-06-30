@@ -4,6 +4,9 @@ ARG CONTAINER_IMAGE=node:${NODE_VERSION}-${NODE_IMAGE_NAME}
 
 FROM ${CONTAINER_IMAGE} as builder
 
+ARG VITE_API_URL
+ARG VITE_AUTH_KEY
+
 WORKDIR /app
 
 COPY package.json yarn.lock ./
