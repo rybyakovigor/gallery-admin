@@ -74,6 +74,7 @@ deploy:
   needs:
     - linter
     - prettier
+    - stylelint
     - type_checking
   tags:
     - gallery
