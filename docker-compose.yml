@@ -2,9 +2,9 @@ services:
   admin-panel:
     build:
       context: .
-      args:
-        - VITE_API_URL=${VITE_API_URL}
-        - VITE_AUTH_KEY=${VITE_AUTH_KEY}
+    environment:
+      - VITE_API_URL=${VITE_API_URL}
+      - VITE_AUTH_KEY=${VITE_AUTH_KEY}
     container_name: admin-panel
     restart: always
     ports:
