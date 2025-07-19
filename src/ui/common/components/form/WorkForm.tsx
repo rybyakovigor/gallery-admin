@@ -15,7 +15,7 @@ interface PropsType {
   ref: React.RefObject<InputRef | null>;
 }
 
-const TitleForm = ({ form, materials, framingTypes, ref }: PropsType): React.ReactElement => {
+const TitleForm = ({ form, framingTypes, materials, ref }: PropsType): React.ReactElement => {
   return (
     <Form autoComplete="off" form={form} labelCol={{ span: 6 }} layout="horizontal">
       <Form.Item<Work> label="Название" name="title" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>

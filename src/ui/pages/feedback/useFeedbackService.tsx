@@ -10,7 +10,7 @@ import { useRequest } from '~/domain/shared/hooks/useRequest';
 export const useFeedbackService = (feedbackStore: FeedbackStoreType): UseFeedbackServiceReturnType => {
   const { feedback, fetchFeedback } = feedbackStore;
 
-  const { request, isLoading, error } = useRequest();
+  const { error, isLoading, request } = useRequest();
 
   useEffect(() => {
     request(fetchFeedback, {}, () => {});

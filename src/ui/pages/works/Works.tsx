@@ -8,22 +8,22 @@ import { useWorksService } from './useWorksService';
 
 const Works = (): React.ReactElement => {
   const {
-    works,
-    materials,
-    framingTypes,
-    isLoading,
-    columns,
-    mode,
-    form,
-    inputRef,
-    openCreateModalHandler,
-    isCreateModalOpen,
-    isUpdateModalOpen,
-    createWorkHandler,
-    updateWorkHandler,
     closeCreateModalHandler,
     closeUpdateModalHandler,
+    columns,
+    createWorkHandler,
+    form,
+    framingTypes,
+    inputRef,
+    isCreateModalOpen,
+    isLoading,
     isSubmitDisabled,
+    isUpdateModalOpen,
+    materials,
+    mode,
+    openCreateModalHandler,
+    updateWorkHandler,
+    works,
   } = useWorksService(worksStore);
 
   return (

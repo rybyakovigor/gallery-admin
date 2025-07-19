@@ -9,20 +9,20 @@ import { useMaterialsService } from './useMaterialsService';
 
 const Materials = (): React.ReactElement => {
   const {
-    materials,
-    isLoading,
-    columns,
-    mode,
-    form,
-    inputRef,
-    openCreateModalHandler,
-    isCreateModalOpen,
-    isUpdateModalOpen,
-    createMaterialHandler,
-    updateMaterialHandler,
     closeCreateModalHandler,
     closeUpdateModalHandler,
+    columns,
+    createMaterialHandler,
+    form,
+    inputRef,
+    isCreateModalOpen,
+    isLoading,
     isSubmitDisabled,
+    isUpdateModalOpen,
+    materials,
+    mode,
+    openCreateModalHandler,
+    updateMaterialHandler,
   } = useMaterialsService(materialsStore);
 
   return (

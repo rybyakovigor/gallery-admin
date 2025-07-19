@@ -10,10 +10,10 @@ import { useRequest } from '~/domain/shared/hooks/useRequest';
 import { renderColumns } from '~/ui/common/components/table-columns/table-columns';
 
 export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType): UseMaterialsServiceReturnType => {
-  const { framingTypes, fetchFramingTypes, deleteFramingTypes, createFramingTypes, updateFramingTypes } =
+  const { createFramingTypes, deleteFramingTypes, fetchFramingTypes, framingTypes, updateFramingTypes } =
     framingTypesStore;
 
-  const { request, isLoading, error } = useRequest();
+  const { error, isLoading, request } = useRequest();
   const [form] = Form.useForm<{ title: string }>();
   const inputRef = useRef<InputRef>(null);
 

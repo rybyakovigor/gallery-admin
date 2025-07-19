@@ -9,20 +9,20 @@ import { useFramingTypesService } from './useFramingTypesService';
 
 const FramingTypes = (): React.ReactElement => {
   const {
-    framingTypes,
-    isLoading,
-    columns,
-    mode,
-    form,
-    inputRef,
-    openCreateModalHandler,
-    isCreateModalOpen,
-    isUpdateModalOpen,
-    createMaterialHandler,
-    updateMaterialHandler,
     closeCreateModalHandler,
     closeUpdateModalHandler,
+    columns,
+    createMaterialHandler,
+    form,
+    framingTypes,
+    inputRef,
+    isCreateModalOpen,
+    isLoading,
     isSubmitDisabled,
+    isUpdateModalOpen,
+    mode,
+    openCreateModalHandler,
+    updateMaterialHandler,
   } = useFramingTypesService(framingTypesStore);
 
   return (

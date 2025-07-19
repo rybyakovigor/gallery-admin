@@ -6,7 +6,7 @@ import feedbackStore from '~/domain/feedback/feedback.store';
 import { useFeedbackService } from './useFeedbackService';
 
 const Feedbacks = (): React.ReactElement => {
-  const { feedback, columns, isLoading } = useFeedbackService(feedbackStore);
+  const { columns, feedback, isLoading } = useFeedbackService(feedbackStore);
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>

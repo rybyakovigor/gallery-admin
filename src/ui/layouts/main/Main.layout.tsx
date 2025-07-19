@@ -15,7 +15,7 @@ import { Page } from '../../navigation/pages';
 
 import styles from './styles.module.css';
 
-const { Header, Sider, Content } = Layout;
+const { Content, Header, Sider } = Layout;
 
 const MainLayout = (): React.ReactElement => {
   const [collapsed, setCollapsed] = useState(false);

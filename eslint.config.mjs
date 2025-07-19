@@ -6,6 +6,7 @@ import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import sonarjs from 'eslint-plugin-sonarjs';
+import sortDestructureKeys from 'eslint-plugin-sort-destructure-keys';
 
 export default [
   { ignores: ['**/*.d.ts'] },
@@ -24,6 +25,7 @@ export default [
       'simple-import-sort': simpleImportSort,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      'sort-destructure-keys': sortDestructureKeys,
       sonarjs,
       prettier,
     },
@@ -54,6 +56,8 @@ export default [
         'warn',
         { callbacksLast: true, shorthandFirst: true, noSortAlphabetically: false, reservedFirst: true },
       ],
+
+      'sort-destructure-keys/sort-destructure-keys': ['warn', { caseSensitive: true }],
 
       'simple-import-sort/imports': [
         'error',

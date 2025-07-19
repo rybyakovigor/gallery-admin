@@ -12,7 +12,7 @@ type FieldType = {
 };
 
 const Auth = (): React.ReactElement => {
-  const { login, isAuth } = authStore;
+  const { isAuth, login } = authStore;
   const navigate = useNavigate();
   const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
     try {

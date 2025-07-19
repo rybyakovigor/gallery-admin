@@ -10,9 +10,9 @@ import { useRequest } from '~/domain/shared/hooks/useRequest';
 import { renderColumns } from '~/ui/common/components/table-columns/table-columns';
 
 export const useMaterialsService = (materialsStore: MaterialsStoreType): UseMaterialsServiceReturnType => {
-  const { materials, fetchMaterials, deleteMaterial, createMaterial, updateMaterial } = materialsStore;
+  const { createMaterial, deleteMaterial, fetchMaterials, materials, updateMaterial } = materialsStore;
 
-  const { request, isLoading, error } = useRequest();
+  const { error, isLoading, request } = useRequest();
   const [form] = Form.useForm<{ title: string }>();
   const inputRef = useRef<InputRef>(null);
 

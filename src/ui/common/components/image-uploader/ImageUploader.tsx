@@ -50,7 +50,7 @@ const ImageUploader = ({ images, setImages }: PropsType): React.ReactElement => 
     <>
       <Upload
         customRequest={async (options) => {
-          const { file, onProgress, onSuccess, onError } = options;
+          const { file, onError, onProgress, onSuccess } = options;
           try {
             const f = await upload(file as File, onProgress);
             setImages([...images, f]);

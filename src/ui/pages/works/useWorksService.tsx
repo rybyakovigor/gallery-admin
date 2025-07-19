@@ -19,11 +19,11 @@ interface WorkForm extends Omit<Work, 'id' | 'created_at' | 'updated_at' | 'mate
 }
 
 export const useWorksService = (worksStore: WorksStoreType): UseWorksServiceReturnType => {
-  const { works, fetchMWorks, deleteWork, createWork, updateWork } = worksStore;
+  const { createWork, deleteWork, fetchMWorks, updateWork, works } = worksStore;
   const { fetchFramingTypes, framingTypes } = framingTypesStore;
   const { fetchMaterials, materials } = materialsStore;
 
-  const { request: worksRequest, isLoading, error } = useRequest();
+  const { error, isLoading, request: worksRequest } = useRequest();
   const { request: materialsRequest } = useRequest();
   const { request: framingTypesRequest } = useRequest();
 
