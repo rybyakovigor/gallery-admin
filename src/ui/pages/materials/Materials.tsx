@@ -38,18 +38,18 @@ const Materials = (): React.ReactElement => {
         <Button onClick={openCreateModalHandler}>Добавить</Button>
       </Space>
 
-      <Table dataSource={materials} columns={columns} pagination={false} loading={isLoading} rowKey={(row) => row.id} />
+      <Table columns={columns} dataSource={materials} loading={isLoading} pagination={false} rowKey={(row) => row.id} />
 
       <Modal
-        title={mode === 'create' ? 'Добавить материал' : 'Редактировать материал'}
-        open={mode === 'create' ? isCreateModalOpen : isUpdateModalOpen}
-        onOk={mode === 'create' ? createMaterialHandler : updateMaterialHandler}
-        okText="Сохранить"
         cancelText="Отменить"
-        onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
         okButtonProps={{ disabled: isSubmitDisabled, loading: isLoading }}
+        okText="Сохранить"
+        open={mode === 'create' ? isCreateModalOpen : isUpdateModalOpen}
+        title={mode === 'create' ? 'Добавить материал' : 'Редактировать материал'}
+        onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
+        onOk={mode === 'create' ? createMaterialHandler : updateMaterialHandler}
       >
-        <TitleForm form={form} ref={inputRef} />
+        <TitleForm ref={inputRef} form={form} />
       </Modal>
     </Space>
   );

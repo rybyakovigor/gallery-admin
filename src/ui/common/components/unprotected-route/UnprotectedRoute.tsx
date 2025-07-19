@@ -14,7 +14,7 @@ interface PropsType {
 const UnprotectedRoute = ({ children }: PropsType): React.ReactElement => {
   const { isAuth } = authStore;
   if (isAuth) {
-    return <Navigate to={Page.WORKS} replace />;
+    return <Navigate replace to={Page.WORKS} />;
   }
 
   return children ?? <Outlet />;

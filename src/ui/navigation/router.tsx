@@ -57,6 +57,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <Navigate to={Page.WORKS} replace />,
+    element: <Navigate replace to={Page.WORKS} />,
   },
 ]);

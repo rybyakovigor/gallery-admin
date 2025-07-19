@@ -19,7 +19,7 @@ const Feedbacks = (): React.ReactElement => {
         </Typography.Title>
       </Space>
 
-      <Table dataSource={feedback} columns={columns} pagination={false} loading={isLoading} rowKey={(row) => row.id} />
+      <Table columns={columns} dataSource={feedback} loading={isLoading} pagination={false} rowKey={(row) => row.id} />
     </Space>
   );
 };

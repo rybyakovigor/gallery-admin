@@ -39,18 +39,18 @@ const Works = (): React.ReactElement => {
         <Button onClick={openCreateModalHandler}>Добавить</Button>
       </Space>
 
-      <Table dataSource={works} columns={columns} pagination={false} loading={isLoading} rowKey={(row) => row.id} />
+      <Table columns={columns} dataSource={works} loading={isLoading} pagination={false} rowKey={(row) => row.id} />
 
       <Modal
-        title={mode === 'create' ? 'Добавить работу' : 'Редактировать работу'}
-        open={mode === 'create' ? isCreateModalOpen : isUpdateModalOpen}
-        onOk={mode === 'create' ? createWorkHandler : updateWorkHandler}
-        okText="Сохранить"
         cancelText="Отменить"
-        onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
         okButtonProps={{ disabled: isSubmitDisabled, loading: isLoading }}
+        okText="Сохранить"
+        open={mode === 'create' ? isCreateModalOpen : isUpdateModalOpen}
+        title={mode === 'create' ? 'Добавить работу' : 'Редактировать работу'}
+        onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
+        onOk={mode === 'create' ? createWorkHandler : updateWorkHandler}
       >
-        <WorkForm form={form} materials={materials} framingTypes={framingTypes} ref={inputRef} />
+        <WorkForm ref={inputRef} form={form} framingTypes={framingTypes} materials={materials} />
       </Modal>
     </Space>
   );

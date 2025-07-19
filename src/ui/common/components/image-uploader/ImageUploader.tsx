@@ -58,17 +58,6 @@ const ImageUploader = ({ images, setImages }: PropsType): React.ReactElement => 
   return (
     <>
       <Upload
-        listType="picture-card"
-        style={{ width: '100%' }}
-        fileList={fileList}
-        onPreview={handlePreview}
-        onChange={handleChange}
-        onRemove={async (file) => {
-          const index = images.findIndex((f) => f.id === file.uid);
-          const newImages = [...images];
-          newImages.splice(index, 1);
-          setImages(newImages);
-        }}
         customRequest={async (options) => {
           const { file, onProgress, onSuccess, onError } = options;
           try {
@@ -83,18 +72,29 @@ const ImageUploader = ({ images, setImages }: PropsType): React.ReactElement => 
             }
           }
         }}
+        fileList={fileList}
+        listType="picture-card"
+        style={{ width: '100%' }}
+        onChange={handleChange}
+        onPreview={handlePreview}
+        onRemove={async (file) => {
+          const index = images.findIndex((f) => f.id === file.uid);
+          const newImages = [...images];
+          newImages.splice(index, 1);
+          setImages(newImages);
+        }}
       >
         {uploadButton}
       </Upload>
       {previewImage && (
         <Image
-          wrapperStyle={{ display: 'none' }}
           preview={{
             visible: previewOpen,
             onVisibleChange: (visible) => setPreviewOpen(visible),
             afterOpenChange: (visible) => !visible && setPreviewImage(''),
           }}
           src={previewImage}
+          wrapperStyle={{ display: 'none' }}
         />
       )}
     </>

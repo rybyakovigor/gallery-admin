@@ -25,10 +25,8 @@ const MainLayout = (): React.ReactElement => {
 
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider collapsible collapsed={collapsed} trigger={null}>
         <Menu
-          theme="dark"
-          mode="inline"
           defaultSelectedKeys={[location.pathname]}
           items={[
             {
@@ -64,15 +62,17 @@ const MainLayout = (): React.ReactElement => {
               },
             },
           ]}
+          mode="inline"
+          theme="dark"
         />
       </Sider>
       <Layout>
         <Header className={styles.header}>
           <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
             className={styles['menu-button']}
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            type="text"
+            onClick={() => setCollapsed(!collapsed)}
           />
         </Header>
         <Content className={styles.content}>

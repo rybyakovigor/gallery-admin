@@ -39,23 +39,23 @@ const FramingTypes = (): React.ReactElement => {
       </Space>
 
       <Table
-        dataSource={framingTypes}
         columns={columns}
-        pagination={false}
+        dataSource={framingTypes}
         loading={isLoading}
+        pagination={false}
         rowKey={(row) => row.id}
       />
 
       <Modal
-        title={mode === 'create' ? 'Добавить оформление' : 'Редактировать оформление'}
-        open={mode === 'create' ? isCreateModalOpen : isUpdateModalOpen}
-        onOk={mode === 'create' ? createMaterialHandler : updateMaterialHandler}
-        okText="Сохранить"
         cancelText="Отменить"
-        onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
         okButtonProps={{ disabled: isSubmitDisabled, loading: isLoading }}
+        okText="Сохранить"
+        open={mode === 'create' ? isCreateModalOpen : isUpdateModalOpen}
+        title={mode === 'create' ? 'Добавить оформление' : 'Редактировать оформление'}
+        onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
+        onOk={mode === 'create' ? createMaterialHandler : updateMaterialHandler}
       >
-        <TitleForm form={form} ref={inputRef} />
+        <TitleForm ref={inputRef} form={form} />
       </Modal>
     </Space>
   );
