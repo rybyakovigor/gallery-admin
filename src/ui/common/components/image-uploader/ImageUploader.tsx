@@ -46,12 +46,6 @@ const ImageUploader = ({ images, setImages }: PropsType): React.ReactElement => 
     setFileList(newFileList);
   };
 
-  const uploadButton = (
-    <button style={{ border: 0, background: 'none' }} type="button">
-      <PlusOutlined />
-      <div style={{ marginTop: 8 }}>Добавить</div>
-    </button>
-  );
   return (
     <>
       <Upload
@@ -81,7 +75,10 @@ const ImageUploader = ({ images, setImages }: PropsType): React.ReactElement => 
           setImages(newImages);
         }}
       >
-        {uploadButton}
+        <button style={{ border: 0, background: 'none' }} type="button">
+          <PlusOutlined />
+          <div style={{ marginTop: 8 }}>Добавить</div>
+        </button>
       </Upload>
       {previewImage && (
         <Image
