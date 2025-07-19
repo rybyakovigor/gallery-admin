@@ -4,6 +4,7 @@ import { CreateMaterial, Material, UpdateMaterial } from '~/domain/materials/mat
 
 class MaterialsApi {
   private readonly path = 'materials';
+
   public async getAll(): Promise<Material[]> {
     const { data } = await httpClient.get<Material[]>(`${this.path}`);
 

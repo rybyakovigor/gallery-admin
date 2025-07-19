@@ -2,7 +2,6 @@ import { z } from 'zod';
 
 import { FileSchema } from '../files/file.schema';
 import { FramingTypeSchema } from '../framing-types/framing-types.schema';
-// Schemas
 import { MaterialSchema } from '../materials/material.schema';
 
 const title = z.string().max(120);

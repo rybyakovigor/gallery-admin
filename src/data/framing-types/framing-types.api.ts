@@ -4,6 +4,7 @@ import { CreateFramingType, FramingType, UpdateFramingType } from '~/domain/fram
 
 class FramingTypesApi {
   private readonly path = 'framing-types';
+
   public async getAll(): Promise<FramingType[]> {
     const { data } = await httpClient.get<FramingType[]>(`${this.path}`);
 

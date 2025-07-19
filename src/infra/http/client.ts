@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
 
-// Interceptors
 import { addRequestWithTokenInterceptor } from './interceptors/token.interceptor';
 
 const httpClient: AxiosInstance = axios.create({
