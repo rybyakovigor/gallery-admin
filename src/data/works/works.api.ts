@@ -1,11 +1,9 @@
-// Http client
 import httpClient from '~/infra/http/client';
 
-// Types
-import { CreateWork, UpdateWork, Work } from '~/domain/works/work.schema';
-import { Material } from '~/domain/materials/material.schema';
-import { FramingType } from '~/domain/framing-types/framing-types.schema';
 import { AppFile } from '~/domain/files/file.schema';
+import { FramingType } from '~/domain/framing-types/framing-types.schema';
+import { Material } from '~/domain/materials/material.schema';
+import { CreateWork, UpdateWork, Work } from '~/domain/works/work.schema';
 
 interface WorkFromServer
   extends Pick<

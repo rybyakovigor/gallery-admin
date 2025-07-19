@@ -1,16 +1,12 @@
-// Core
-import { useState, useEffect, useRef } from 'react';
-import { Form, FormInstance, InputRef, message } from 'antd';
+import { useEffect, useRef, useState } from 'react';
 
-// Hooks
+import { Form, FormInstance, InputRef, message } from 'antd';
+import { ColumnType } from 'antd/es/table';
+
+import { Material } from '~/domain/materials/material.schema';
+import { MaterialsStoreType } from '~/domain/materials/materials.store';
 import { useRequest } from '~/domain/shared/hooks/useRequest';
 
-// Types
-import { ColumnType } from 'antd/es/table';
-import { MaterialsStoreType } from '~/domain/materials/materials.store';
-import { Material } from '~/domain/materials/material.schema';
-
-// Utils
 import { renderColumns } from '~/ui/common/components/table-columns/table-columns';
 
 export const useMaterialsService = (materialsStore: MaterialsStoreType): UseMaterialsServiceReturnType => {

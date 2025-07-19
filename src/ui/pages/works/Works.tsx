@@ -1,14 +1,10 @@
-// Core
 import { Button, Modal, Space, Table, Typography } from 'antd';
 
-// Store
 import worksStore from '~/domain/works/works.store';
 
-// Service
-import { useWorksService } from './useWorksService';
-
-// Components
 import WorkForm from '~/ui/common/components/form/WorkForm';
+
+import { useWorksService } from './useWorksService';
 
 const Works = (): React.ReactElement => {
   const {

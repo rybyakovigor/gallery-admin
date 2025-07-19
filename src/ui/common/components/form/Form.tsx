@@ -1,5 +1,4 @@
-import React from 'react';
-import { Form, Input, FormInstance, InputRef } from 'antd';
+import { Form, FormInstance, Input, InputRef } from 'antd';
 
 type FieldType = { title: string };
 

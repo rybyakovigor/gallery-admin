@@ -1,20 +1,16 @@
-// Core
-import { Navigate, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
-// Pages
-import { Page } from './pages';
-import Works from '../pages/works/Works';
-import Materials from '../pages/materials/Materials';
-import FramingTypes from '../pages/framing-types/FramingTypes';
-import Auth from '../pages/auth/Auth';
-import Feedback from '../pages/feedback/Feedback';
-
-// Layouts
-import MainLayout from '../layouts/main/Main.layout';
-
-// Components
 import ProtectedRoute from '../common/components/protected-route/ProtectedRoute';
 import UnprotectedRoute from '../common/components/unprotected-route/UnprotectedRoute';
+// Layouts
+import MainLayout from '../layouts/main/Main.layout';
+import Auth from '../pages/auth/Auth';
+import Feedback from '../pages/feedback/Feedback';
+import FramingTypes from '../pages/framing-types/FramingTypes';
+import Materials from '../pages/materials/Materials';
+import Works from '../pages/works/Works';
+
+import { Page } from './pages';
 
 export const router = createBrowserRouter([
   {

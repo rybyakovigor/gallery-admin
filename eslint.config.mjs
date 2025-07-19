@@ -1,6 +1,5 @@
-// eslint.config.mjs
-import eslint from '@eslint/js';
 import tseslint from '@typescript-eslint/eslint-plugin';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tsParser from '@typescript-eslint/parser';
 import prettier from 'eslint-plugin-prettier';
 import react from 'eslint-plugin-react';
@@ -16,12 +15,13 @@ export default [
       parser: tsParser,
       parserOptions: { project: './tsconfig.json', ecmaVersion: 'latest', sourceType: 'module' },
       globals: {
-        React: true, // если используешь JSX без импорта React
+        React: true, // если JSX без импорта React
       },
     },
     plugins: {
       '@typescript-eslint': tseslint,
       react,
+      'simple-import-sort': simpleImportSort,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       sonarjs,
@@ -39,7 +39,7 @@ export default [
       ...sonarjs.configs.recommended.rules,
       ...prettier.configs.recommended.rules,
 
-      // Твои кастомные правила:
+      // Переопределенные правила:
       '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/unbound-method': 'off',
@@ -54,6 +54,48 @@ export default [
         'warn',
         { callbacksLast: true, shorthandFirst: true, noSortAlphabetically: false, reservedFirst: true },
       ],
+
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            // React
+            ['^react$', '^react-router-dom'],
+
+            // Сторонние зависимости
+            ['^@?\\w'],
+
+            // Абсолютные импорты из проекта
+            ['^~/infra/.*$'],
+            ['^~/data/.*/types/.*$'],
+            ['^~/data/.*$'],
+            ['^~/domain/.*$'],
+            ['^~/ui/assets/.*$'],
+            ['^~/ui/components/.*$'],
+            ['^~/ui/hooks/.*$'],
+            ['^~/ui/layouts/.*$'],
+            ['^~/ui/providers/.*$'],
+            ['^~/ui/utils$', '^@/ui/utils/.*$'],
+            ['^~/ui/styles/.*$'],
+            ['^~/ui/.*$'],
+
+            // Остальные абсолютные импорты с `~`
+            ['^~'],
+
+            // Относительные импорты: сначала родительские, потом текущие
+            ['^\\.\\.(?!/?$)', '^\\.\\./?$'], // ../
+            ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'], // ./
+
+            // CSS (всегда в конце)
+            ['\\.css$'],
+          ],
+        },
+      ],
+      'simple-import-sort/exports': 'error',
+
+      // Отключаем другие конфликтующие правила
+      'import/order': 'off',
+      'sort-imports': 'off',
     },
   },
 ];

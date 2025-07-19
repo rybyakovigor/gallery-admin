@@ -1,4 +1,3 @@
-// Core
 import axios, { AxiosInstance } from 'axios';
 
 // Interceptors

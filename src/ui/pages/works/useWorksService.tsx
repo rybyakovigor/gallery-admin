@@ -1,21 +1,17 @@
-// Core
-import { useState, useEffect, useRef, RefObject } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
+
 import { Form, FormInstance, InputRef, message } from 'antd';
-
-// Hooks
-import { useRequest } from '~/domain/shared/hooks/useRequest';
-
-// Types
 import { ColumnType } from 'antd/es/table';
+
+import { FramingType } from '~/domain/framing-types/framing-types.schema';
+import framingTypesStore from '~/domain/framing-types/framing-types.store';
+import { Material } from '~/domain/materials/material.schema';
+import materialsStore from '~/domain/materials/materials.store';
+import { useRequest } from '~/domain/shared/hooks/useRequest';
 import { Work } from '~/domain/works/work.schema';
 import { WorksStoreType } from '~/domain/works/works.store';
-import { Material } from '~/domain/materials/material.schema';
-import { FramingType } from '~/domain/framing-types/framing-types.schema';
 
-// Utils
 import { renderColumns } from '~/ui/common/components/table-columns/table-columns';
-import framingTypesStore from '~/domain/framing-types/framing-types.store';
-import materialsStore from '~/domain/materials/materials.store';
 
 interface WorkForm extends Omit<Work, 'id' | 'created_at' | 'updated_at' | 'materials' | 'framing_types'> {
   materials: string[];

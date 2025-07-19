@@ -1,11 +1,9 @@
-// Core
 import { RouterProvider } from 'react-router-dom';
+
 import { configure } from 'mobx';
 
-// Router
 import { router } from './navigation/router';
 
-// Styles
 import './styles/index.css';
 
 // Настройка для mobx, позволяющая не оборачивать

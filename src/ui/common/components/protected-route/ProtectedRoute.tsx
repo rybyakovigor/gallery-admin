@@ -1,11 +1,9 @@
-// Core
-import { observer } from 'mobx-react-lite';
 import { Navigate, Outlet } from 'react-router-dom';
 
-// Stores
+import { observer } from 'mobx-react-lite';
+
 import authStore from '~/domain/auth/auth.store';
 
-// Types
 import { Page } from '~/ui/navigation/pages';
 
 interface PropsType {

@@ -1,4 +1,3 @@
-// Core
 import { useState } from 'react';
 
 interface UseRequest {

@@ -1,10 +1,7 @@
-// Core
 import { makeAutoObservable } from 'mobx';
 
-// Api
 import worksApi from '~/data/works/works.api';
 
-// Types
 import { CreateWork, UpdateWork, Work } from './work.schema';
 
 class WorksStore {

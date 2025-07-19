@@ -1,14 +1,10 @@
-// Core
-import { observer } from 'mobx-react-lite';
 import { Button, Modal, Space, Table, Typography } from 'antd';
+import { observer } from 'mobx-react-lite';
 
-// Stores
 import materialsStore from '~/domain/materials/materials.store';
 
-// Components
 import TitleForm from '~/ui/common/components/form/Form';
 
-// Hooks
 import { useMaterialsService } from './useMaterialsService';
 
 const Materials = (): React.ReactElement => {

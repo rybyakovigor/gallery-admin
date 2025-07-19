@@ -1,7 +1,5 @@
-// Http client
 import httpClient from '~/infra/http/client';
 
-// Types
 import { CreateFramingType, FramingType, UpdateFramingType } from '~/domain/framing-types/framing-types.schema';
 
 class FramingTypesApi {

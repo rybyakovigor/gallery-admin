@@ -1,7 +1,5 @@
-// Http client
 import httpClient from '~/infra/http/client';
 
-// Types
 import { CreateMaterial, Material, UpdateMaterial } from '~/domain/materials/material.schema';
 
 class MaterialsApi {

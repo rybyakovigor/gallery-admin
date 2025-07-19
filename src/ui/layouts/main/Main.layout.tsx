@@ -1,17 +1,16 @@
-// Core
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+
 import {
   BorderOutlined,
   FileImageOutlined,
   HddOutlined,
+  MailOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  MailOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu, Button } from 'antd';
+import { Button, Layout, Menu } from 'antd';
 
-// Routes
 import { Page } from '../../navigation/pages';
 
 import styles from './styles.module.css';

@@ -1,11 +1,8 @@
-// Core
-import { observer } from 'mobx-react-lite';
 import { Space, Table, Typography } from 'antd';
+import { observer } from 'mobx-react-lite';
 
-// Stores
 import feedbackStore from '~/domain/feedback/feedback.store';
 
-// Hooks
 import { useFeedbackService } from './useFeedbackService';
 
 const Feedbacks = (): React.ReactElement => {

@@ -1,7 +1,5 @@
-// Http client
 import httpClient from '~/infra/http/client';
 
-// Types
 import { Feedback } from '~/domain/feedback/feedback.schema';
 
 class FeedbackApi {

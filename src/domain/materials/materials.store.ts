@@ -1,10 +1,7 @@
-// Core
 import { makeAutoObservable } from 'mobx';
 
-// Api
 import materialsApi from '~/data/materials/materials.api';
 
-// Types
 import { CreateMaterial, Material, UpdateMaterial } from './material.schema';
 
 class MaterialsStore {

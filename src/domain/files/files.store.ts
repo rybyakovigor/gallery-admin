@@ -1,10 +1,7 @@
-// Core
 import { makeAutoObservable } from 'mobx';
 
-// Api
 import filesApi from '~/data/files/files.api';
 
-// Types
 import { AppFile } from './file.schema';
 
 class FilesStore {

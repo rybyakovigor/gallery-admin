@@ -1,16 +1,12 @@
-// Core
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 import { Form, FormInstance, InputRef, message } from 'antd';
-
-// Hooks
-import { useRequest } from '~/domain/shared/hooks/useRequest';
-
-// Types
 import { ColumnType } from 'antd/es/table';
+
 import { FramingType } from '~/domain/framing-types/framing-types.schema';
 import { FramingTypesStoreType } from '~/domain/framing-types/framing-types.store';
+import { useRequest } from '~/domain/shared/hooks/useRequest';
 
-// Utils
 import { renderColumns } from '~/ui/common/components/table-columns/table-columns';
 
 export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType): UseMaterialsServiceReturnType => {

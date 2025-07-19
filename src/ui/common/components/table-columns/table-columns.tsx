@@ -1,5 +1,4 @@
-// Core
-import { Space, Button } from 'antd';
+import { Button, Space } from 'antd';
 import { ColumnType } from 'antd/es/table';
 
 export const renderColumns = <T,>(

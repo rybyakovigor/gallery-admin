@@ -1,13 +1,10 @@
-// Core
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { PlusOutlined } from '@ant-design/icons';
+import type { GetProp, UploadFile, UploadProps } from 'antd';
 import { Image, Upload } from 'antd';
 
-// Types
-import type { GetProp, UploadFile, UploadProps } from 'antd';
 import { AppFile } from '~/domain/files/file.schema';
-
-// Stores
 import filesStore from '~/domain/files/files.store';
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];

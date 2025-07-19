@@ -1,10 +1,7 @@
-// Core
 import { makeAutoObservable } from 'mobx';
 
-// Api
 import feedbackApi from '~/data/feedback/feedback.api';
 
-// Types
 import { Feedback } from './feedback.schema';
 
 class FeedbackStore {

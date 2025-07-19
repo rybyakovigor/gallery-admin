@@ -1,12 +1,10 @@
-// Core
-import { Button, Form, FormProps, Input, Layout, message } from 'antd';
-import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 
-// Stores
+import { Button, Form, FormProps, Input, Layout, message } from 'antd';
+import { observer } from 'mobx-react-lite';
+
 import authStore from '~/domain/auth/auth.store';
 
-// Types
 import { Page } from '~/ui/navigation/pages';
 
 type FieldType = {

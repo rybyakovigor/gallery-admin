@@ -1,10 +1,9 @@
-// Core
 import { z } from 'zod';
 
+import { FileSchema } from '../files/file.schema';
+import { FramingTypeSchema } from '../framing-types/framing-types.schema';
 // Schemas
 import { MaterialSchema } from '../materials/material.schema';
-import { FramingTypeSchema } from '../framing-types/framing-types.schema';
-import { FileSchema } from '../files/file.schema';
 
 const title = z.string().max(120);
 const description = z.string();

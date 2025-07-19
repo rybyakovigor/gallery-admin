@@ -1,18 +1,12 @@
-// Core
-import React from 'react';
-import { Form, Input, FormInstance, InputRef, InputNumber, Switch, Select } from 'antd';
-
-// Types
-import { Work } from '~/domain/works/work.schema';
-import { Material } from '~/domain/materials/material.schema';
-import { FramingType } from '~/domain/framing-types/framing-types.schema';
-
-// Components
+import { Form, FormInstance, Input, InputNumber, InputRef, Select, Switch } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import ImageUploader from '../image-uploader/ImageUploader';
 
-// Constants
+import { FramingType } from '~/domain/framing-types/framing-types.schema';
+import { Material } from '~/domain/materials/material.schema';
 import { REQUIRED_FIELD_ERROR } from '~/domain/shared/validations/constants';
+import { Work } from '~/domain/works/work.schema';
+
+import ImageUploader from '../image-uploader/ImageUploader';
 
 interface PropsType {
   form: FormInstance;

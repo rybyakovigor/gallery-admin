@@ -1,10 +1,7 @@
-// Core
 import { makeAutoObservable } from 'mobx';
 
-// Api
 import framingTypesApi from '~/data/framing-types/framing-types.api';
 
-// Types
 import { CreateFramingType, FramingType, UpdateFramingType } from './framing-types.schema';
 
 class FramingTypesStore {

@@ -1,8 +1,7 @@
-// Http client
-import httpClient from '~/infra/http/client';
 import { AxiosRequestConfig } from 'axios';
 
-// Types
+import httpClient from '~/infra/http/client';
+
 import { AppFile } from '~/domain/files/file.schema';
 
 class FilesApi {
