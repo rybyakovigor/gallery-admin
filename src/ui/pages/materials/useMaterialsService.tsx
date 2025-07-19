@@ -27,6 +27,7 @@ export const useMaterialsService = (materialsStore: MaterialsStoreType): UseMate
 
   useEffect(() => {
     request(fetchMaterials, {}, () => {});
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -34,7 +35,6 @@ export const useMaterialsService = (materialsStore: MaterialsStoreType): UseMate
     if (error) {
       message.error(error);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   const openCreateModalHandler = (): void => {
@@ -137,7 +137,7 @@ interface UseMaterialsServiceReturnType {
   columns: ColumnType<Material>[];
   mode: 'create' | 'update';
   form: FormInstance;
-  inputRef: React.RefObject<InputRef>;
+  inputRef: React.RefObject<InputRef | null>;
   openCreateModalHandler: () => void;
   isCreateModalOpen: boolean;
   isUpdateModalOpen: boolean;

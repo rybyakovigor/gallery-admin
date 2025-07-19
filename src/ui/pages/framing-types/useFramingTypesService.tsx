@@ -35,7 +35,6 @@ export const useFramingTypesService = (framingTypesStore: FramingTypesStoreType)
     if (error) {
       message.error(error);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   const openCreateModalHandler = (): void => {
@@ -138,7 +137,7 @@ interface UseMaterialsServiceReturnType {
   columns: ColumnType<FramingType>[];
   mode: 'create' | 'update';
   form: FormInstance;
-  inputRef: React.RefObject<InputRef>;
+  inputRef: React.RefObject<InputRef | null>;
   openCreateModalHandler: () => void;
   isCreateModalOpen: boolean;
   isUpdateModalOpen: boolean;

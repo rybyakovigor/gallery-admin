@@ -19,6 +19,7 @@ class MaterialsStore {
       const materials = await materialsApi.getAll();
       this.materials = materials;
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при загрузке материалов');
     }
   }
@@ -28,6 +29,7 @@ class MaterialsStore {
       const createdMaterial = await materialsApi.create(material);
       this.materials = [...this.materials, createdMaterial];
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при создании материала');
     }
   }
@@ -38,6 +40,7 @@ class MaterialsStore {
       const index = this.materials.findIndex((item) => item.id === material.id);
       this.materials = this.materials.map((item, i) => (i === index ? updatedMaterial : item));
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при обновлении материала');
     }
   }
@@ -47,6 +50,7 @@ class MaterialsStore {
       await materialsApi.delete(id);
       this.materials = this.materials.filter((item) => item.id !== id);
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при удалении материала');
     }
   }

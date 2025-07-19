@@ -14,8 +14,6 @@ import ImageUploader from '../image-uploader/ImageUploader';
 // Constants
 import { REQUIRED_FIELD_ERROR } from '~/domain/shared/validations/constants';
 
-interface FieldType extends Work {}
-
 interface PropsType {
   form: FormInstance;
   materials: Material[];
@@ -23,29 +21,25 @@ interface PropsType {
 }
 
 const TitleForm = React.forwardRef<InputRef, PropsType>(
-  ({ form, materials, framingTypes }, inputRef): React.ReactNode => {
+  ({ form, materials, framingTypes }, inputRef): React.ReactElement => {
     return (
       <Form form={form} labelCol={{ span: 6 }} layout="horizontal" autoComplete="off">
-        <Form.Item<FieldType> label="Название" name="title" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
+        <Form.Item<Work> label="Название" name="title" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
           <Input ref={inputRef} />
         </Form.Item>
-        <Form.Item<FieldType> label="Описание" name="description">
+        <Form.Item<Work> label="Описание" name="description">
           <TextArea />
         </Form.Item>
-        <Form.Item<FieldType> label="Ширина" name="width" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
+        <Form.Item<Work> label="Ширина" name="width" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
           <InputNumber type="number" min={1} />
         </Form.Item>
-        <Form.Item<FieldType> label="Высота" name="height" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
+        <Form.Item<Work> label="Высота" name="height" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
           <InputNumber type="number" min={1} />
         </Form.Item>
-        <Form.Item<FieldType> label="Цена" name="price" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
+        <Form.Item<Work> label="Цена" name="price" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
           <InputNumber type="number" min={1} />
         </Form.Item>
-        <Form.Item<FieldType>
-          label="Материалы"
-          name="materials"
-          rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}
-        >
+        <Form.Item<Work> label="Материалы" name="materials" rules={[{ required: true, message: REQUIRED_FIELD_ERROR }]}>
           <Select
             mode="multiple"
             allowClear
@@ -60,7 +54,7 @@ const TitleForm = React.forwardRef<InputRef, PropsType>(
             }))}
           />
         </Form.Item>
-        <Form.Item<FieldType>
+        <Form.Item<Work>
           label="Оформление"
           name="framing_types"
           rules={[{ required: true, message: 'Поле не может быть пустым' }]}
@@ -79,7 +73,7 @@ const TitleForm = React.forwardRef<InputRef, PropsType>(
             }))}
           />
         </Form.Item>
-        <Form.Item<FieldType> label="Изображения" name="images">
+        <Form.Item<Work> label="Изображения" name="images">
           <ImageUploader
             images={form.getFieldValue('images')}
             setImages={(images) => {
@@ -87,10 +81,10 @@ const TitleForm = React.forwardRef<InputRef, PropsType>(
             }}
           />
         </Form.Item>
-        <Form.Item<FieldType> label="Продано" name="is_sold">
+        <Form.Item<Work> label="Продано" name="is_sold">
           <Switch />
         </Form.Item>
-        <Form.Item<FieldType> label="Показывать" name="is_active">
+        <Form.Item<Work> label="Показывать" name="is_active">
           <Switch />
         </Form.Item>
       </Form>

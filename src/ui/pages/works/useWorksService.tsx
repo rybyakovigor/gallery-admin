@@ -1,5 +1,5 @@
 // Core
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, RefObject } from 'react';
 import { Form, FormInstance, InputRef, message } from 'antd';
 
 // Hooks
@@ -50,7 +50,6 @@ export const useWorksService = (worksStore: WorksStoreType): UseWorksServiceRetu
     if (error) {
       message.error(error);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   const openCreateModalHandler = (): void => {
@@ -108,10 +107,7 @@ export const useWorksService = (worksStore: WorksStoreType): UseWorksServiceRetu
     form
       .validateFields()
       .then((values) => {
-        const body = {
-          ...values,
-          images: values.images.map((image) => image.id),
-        };
+        const body = { ...values, images: values.images.map((image) => image.id) };
 
         worksRequest(createWork, body, () => {
           if (!error) {
@@ -126,10 +122,7 @@ export const useWorksService = (worksStore: WorksStoreType): UseWorksServiceRetu
     form
       .validateFields()
       .then((values) => {
-        const body = {
-          ...values,
-          images: values.images.map((image) => image.id),
-        };
+        const body = { ...values, images: values.images.map((image) => image.id) };
         worksRequest(updateWork, { ...currentWork, ...body }, () => {
           if (!error) {
             closeUpdateModalHandler();
@@ -189,7 +182,7 @@ interface UseWorksServiceReturnType {
   columns: ColumnType<Work>[];
   mode: 'create' | 'update';
   form: FormInstance;
-  inputRef: React.RefObject<InputRef>;
+  inputRef: RefObject<InputRef | null>;
   openCreateModalHandler: () => void;
   isCreateModalOpen: boolean;
   isUpdateModalOpen: boolean;

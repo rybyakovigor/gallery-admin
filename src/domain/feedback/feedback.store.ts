@@ -19,6 +19,7 @@ class FeedbackStore {
       const feedback = await feedbackApi.getAll();
       this.feedback = feedback;
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при загрузке обратной связи');
     }
   }

@@ -9,15 +9,15 @@ import authStore from '~/domain/auth/auth.store';
 import { Page } from '~/ui/navigation/pages';
 
 interface PropsType {
-  children?: React.ReactNode;
+  children?: React.ReactElement;
 }
-const UnprotectedRoute = ({ children }: PropsType): React.ReactNode => {
+const UnprotectedRoute = ({ children }: PropsType): React.ReactElement => {
   const { isAuth } = authStore;
   if (isAuth) {
     return <Navigate to={Page.WORKS} replace />;
   }
 
-  return children ? children : <Outlet />;
+  return children ?? <Outlet />;
 };
 
 export default observer(UnprotectedRoute);

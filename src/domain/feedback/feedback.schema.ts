@@ -6,12 +6,6 @@ const created_at = z.date();
 const email = z.string().optional();
 const phone = z.string().optional();
 
-const BaseFeedbackSchema = z.object({
-  id,
-  name,
-  email,
-  phone,
-  created_at,
-});
+export const BaseFeedbackSchema = z.object({ id, name, email, phone, created_at });
 
-export interface Feedback extends z.infer<typeof BaseFeedbackSchema> {}
+export type Feedback = z.infer<typeof BaseFeedbackSchema>;

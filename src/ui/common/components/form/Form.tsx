@@ -9,7 +9,7 @@ interface PropsType {
   form: FormInstance;
 }
 
-const TitleForm = React.forwardRef<InputRef, PropsType>(({ form }, inputRef): React.ReactNode => {
+const TitleForm = React.forwardRef<InputRef, PropsType>(({ form }, inputRef): React.ReactElement => {
   return (
     <Form form={form} autoComplete="off">
       <Form.Item<FieldType>

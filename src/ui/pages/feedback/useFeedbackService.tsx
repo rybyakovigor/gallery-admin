@@ -17,6 +17,7 @@ export const useFeedbackService = (feedbackStore: FeedbackStoreType): UseFeedbac
 
   useEffect(() => {
     request(fetchFeedback, {}, () => {});
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -24,7 +25,6 @@ export const useFeedbackService = (feedbackStore: FeedbackStoreType): UseFeedbac
     if (error) {
       message.error(error);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   const [columns] = useState([

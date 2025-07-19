@@ -19,6 +19,7 @@ class FramingTypesStore {
       const framingType = await framingTypesApi.getAll();
       this.framingTypes = framingType;
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при загрузке оформления');
     }
   }
@@ -28,6 +29,7 @@ class FramingTypesStore {
       const createdFramingType = await framingTypesApi.create(framingType);
       this.framingTypes = [...this.framingTypes, createdFramingType];
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при создании оформления');
     }
   }
@@ -38,6 +40,7 @@ class FramingTypesStore {
       const index = this.framingTypes.findIndex((item) => item.id === framingType.id);
       this.framingTypes = this.framingTypes.map((item, i) => (i === index ? updatedFramingType : item));
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при обновлении оформления');
     }
   }
@@ -47,6 +50,7 @@ class FramingTypesStore {
       await framingTypesApi.delete(id);
       this.framingTypes = this.framingTypes.filter((item) => item.id !== id);
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при удалении оформления');
     }
   }

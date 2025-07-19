@@ -16,22 +16,17 @@ interface PropsType {
   setImages: (images: AppFile[]) => void;
 }
 
-const mapFile = (file: AppFile): UploadFile => ({
-  uid: file.id,
-  name: file.title,
-  status: 'done',
-  url: file.path,
-});
+const mapFile = (file: AppFile): UploadFile => ({ uid: file.id, name: file.title, status: 'done', url: file.path });
 
 const getBase64 = (file: FileType): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
+    reader.onerror = (error) => reject(new Error(`FileReader error: ${error.type}`));
   });
 
-const ImageUploader = ({ images, setImages }: PropsType): React.ReactNode => {
+const ImageUploader = ({ images, setImages }: PropsType): React.ReactElement => {
   const { upload } = filesStore;
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
@@ -79,9 +74,13 @@ const ImageUploader = ({ images, setImages }: PropsType): React.ReactNode => {
           try {
             const f = await upload(file as File, onProgress);
             setImages([...images, f]);
-            onSuccess && onSuccess({ response: 'success' });
+            if (onSuccess) {
+              onSuccess({ response: 'success' });
+            }
           } catch (error) {
-            onError && onError(error as Error, { response: 'error' });
+            if (onError) {
+              onError(error as Error, { response: 'error' });
+            }
           }
         }}
       >

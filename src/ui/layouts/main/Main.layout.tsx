@@ -18,7 +18,7 @@ import styles from './styles.module.css';
 
 const { Header, Sider, Content } = Layout;
 
-const MainLayout = (): React.ReactNode => {
+const MainLayout = (): React.ReactElement => {
   const [collapsed, setCollapsed] = useState(false);
   const navigation = useNavigate();
   const location = useLocation();
@@ -35,25 +35,33 @@ const MainLayout = (): React.ReactNode => {
               key: Page.WORKS,
               icon: <FileImageOutlined />,
               label: 'Работы',
-              onClick: () => navigation(Page.WORKS),
+              onClick: () => {
+                navigation(Page.WORKS);
+              },
             },
             {
               key: Page.MATERIALS,
               icon: <HddOutlined />,
               label: 'Материалы',
-              onClick: () => navigation(Page.MATERIALS),
+              onClick: () => {
+                navigation(Page.MATERIALS);
+              },
             },
             {
               key: Page.FRAMING_TYPES,
               icon: <BorderOutlined />,
               label: 'Оформление',
-              onClick: () => navigation(Page.FRAMING_TYPES),
+              onClick: () => {
+                navigation(Page.FRAMING_TYPES);
+              },
             },
             {
               key: Page.FEEDBACK,
               icon: <MailOutlined />,
               label: 'Обратная связь',
-              onClick: () => navigation(Page.FEEDBACK),
+              onClick: () => {
+                navigation(Page.FEEDBACK);
+              },
             },
           ]}
         />
