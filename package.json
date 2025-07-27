@@ -16,8 +16,7 @@
     "fix:all": "concurrently \"npm:fix:*(!all)\"",
     "fix:lint": "eslint src --fix",
     "fix:prettier": "prettier --write src",
-    "fix:stylelint": "stylelint src/**/*.css --fix",
-    "prepare": "husky install"
+    "fix:stylelint": "stylelint src/**/*.css --fix"
   },
   "dependencies": {
     "@ant-design/icons": "6.0.0",
@@ -25,6 +24,9 @@
     "axios": "1.10.0",
     "mobx": "6.13.7",
     "mobx-react-lite": "4.1.0",
+    "primeflex": "4.0.0",
+    "primeicons": "7.0.0",
+    "primereact": "10.9.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-router-dom": "7.7.0",
