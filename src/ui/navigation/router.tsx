@@ -2,19 +2,18 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import ProtectedRoute from '../common/components/protected-route/ProtectedRoute';
 import UnprotectedRoute from '../common/components/unprotected-route/UnprotectedRoute';
-// Layouts
 import MainLayout from '../layouts/main/Main.layout';
 import Auth from '../pages/auth/Auth';
 import Feedback from '../pages/feedback/Feedback';
-import FramingTypes from '../pages/framing-types/FramingTypes';
+import FramingTypes from '../pages/framing-types/FramingTypes.page';
 import Materials from '../pages/materials/Materials';
 import Works from '../pages/works/Works';
 
-import { Page } from './pages';
+import { PageRoute } from './pages';
 
 export const router = createBrowserRouter([
   {
-    path: Page.AUTH,
+    path: PageRoute.AUTH,
     element: (
       <UnprotectedRoute>
         <Auth />
@@ -22,7 +21,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: Page.ROOT,
+    path: PageRoute.ROOT,
     element: (
       <ProtectedRoute>
         <MainLayout />
@@ -31,28 +30,28 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate replace to={Page.WORKS} />,
+        element: <Navigate replace to={PageRoute.WORKS} />,
       },
       {
-        path: Page.WORKS,
+        path: PageRoute.WORKS,
         element: <Works />,
       },
       {
-        path: Page.MATERIALS,
+        path: PageRoute.MATERIALS,
         element: <Materials />,
       },
       {
-        path: Page.FRAMING_TYPES,
+        path: PageRoute.FRAMING_TYPES,
         element: <FramingTypes />,
       },
       {
-        path: Page.FEEDBACK,
+        path: PageRoute.FEEDBACK,
         element: <Feedback />,
       },
     ],
   },
   {
     path: '*',
-    element: <Navigate replace to={Page.WORKS} />,
+    element: <Navigate replace to={PageRoute.WORKS} />,
   },
 ]);

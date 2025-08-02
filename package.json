@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "6.0.0",
+    "@hookform/resolvers": "5.2.0",
     "antd": "5.26.5",
     "axios": "1.10.0",
     "mobx": "6.13.7",
@@ -29,6 +30,7 @@
     "primereact": "10.9.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-hook-form": "7.61.1",
     "react-router-dom": "7.7.0",
     "zod": "4.0.5"
   },

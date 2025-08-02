@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 
 import authStore from '~/domain/auth/auth.store';
 
-import { Page } from '~/ui/navigation/pages';
+import { PageRoute } from '~/ui/navigation/pages';
 
 type FieldType = {
   key: string;
@@ -17,14 +17,14 @@ const Auth = (): React.ReactElement => {
   const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
     try {
       login(values.key);
-      navigate(Page.WORKS);
+      navigate(PageRoute.WORKS);
     } catch (error) {
       message.error((error as Error).message);
     }
   };
 
   if (isAuth) {
-    navigate(Page.ROOT);
+    navigate(PageRoute.ROOT);
   }
 
   return (

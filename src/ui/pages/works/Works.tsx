@@ -2,7 +2,7 @@ import { Button, Modal, Space, Table, Typography } from 'antd';
 
 import worksStore from '~/domain/works/works.store';
 
-import WorkForm from '~/ui/common/components/form/WorkForm';
+import WorkForm from '~/ui/common/components/forms/WorkForm';
 
 import { useWorksService } from './useWorksService';
 

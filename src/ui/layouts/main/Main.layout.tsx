@@ -3,7 +3,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { MenuItem } from 'primereact/menuitem';
 import { classNames } from 'primereact/utils';
 
-import { Page } from '../../navigation/pages';
+import { PageRoute } from '../../navigation/pages';
 
 import Menu from './Menu/Menu';
 
@@ -15,24 +15,24 @@ const MainLayout = (): React.ReactElement => {
 
   return (
     <div className={styles['main-container']}>
-      <div className={styles['sidebar']}>
+      <aside className={styles['sidebar']}>
         <Menu
-          items={[Page.WORKS, Page.MATERIALS, Page.FRAMING_TYPES, Page.FEEDBACK].map((route) => {
+          items={[PageRoute.WORKS, PageRoute.MATERIALS, PageRoute.FRAMING_TYPES, PageRoute.FEEDBACK].map((route) => {
             let menuItem: MenuItem = {};
             switch (route) {
-              case Page.WORKS:
+              case PageRoute.WORKS:
                 menuItem.icon = 'pi pi-images';
                 menuItem.label = 'Работы';
                 break;
-              case Page.MATERIALS:
+              case PageRoute.MATERIALS:
                 menuItem.icon = 'pi pi-palette';
                 menuItem.label = 'Материалы';
                 break;
-              case Page.FRAMING_TYPES:
+              case PageRoute.FRAMING_TYPES:
                 menuItem.icon = 'pi pi-th-large';
                 menuItem.label = 'Оформление';
                 break;
-              case Page.FEEDBACK:
+              case PageRoute.FEEDBACK:
                 menuItem.icon = 'pi pi-comment';
                 menuItem.label = 'Обратная связь';
                 break;
@@ -45,10 +45,10 @@ const MainLayout = (): React.ReactElement => {
             };
           })}
         />
-      </div>
-      <div className={styles['content']}>
+      </aside>
+      <main className={styles['content']}>
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 };

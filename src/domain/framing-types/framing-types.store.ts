@@ -13,12 +13,17 @@ class FramingTypesStore {
 
   public async fetchFramingTypes(): Promise<void> {
     try {
-      const framingType = await framingTypesApi.getAll();
-      this.framingTypes = framingType;
+      const framingTypes = await framingTypesApi.getAll();
+      this.framingTypes = framingTypes;
     } catch (error) {
       console.error(error);
       throw new Error('Ошибка при загрузке оформления');
     }
+  }
+
+  public findFramingType(id: string): FramingType | null {
+    const framingType = this.framingTypes.find((predicate) => predicate.id === id);
+    return framingType ?? null;
   }
 
   public async createFramingTypes(framingType: CreateFramingType): Promise<void> {

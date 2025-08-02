@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import materialsStore from '~/domain/materials/materials.store';
 
-import TitleForm from '~/ui/common/components/form/Form';
+import TitleForm from '~/ui/common/components/forms/title/Title.form';
 
 import { useMaterialsService } from './useMaterialsService';
 
@@ -45,6 +45,7 @@ const Materials = (): React.ReactElement => {
         onCancel={mode === 'create' ? closeCreateModalHandler : closeUpdateModalHandler}
         onOk={mode === 'create' ? createMaterialHandler : updateMaterialHandler}
       >
+        {/* @ts-expect-error form */}
         <TitleForm ref={inputRef} form={form} />
       </Modal>
     </Space>

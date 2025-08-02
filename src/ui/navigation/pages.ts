@@ -1,4 +1,4 @@
-export enum Page {
+export enum PageRoute {
   ROOT = '/',
   WORKS = '/works',
   MATERIALS = '/materials',

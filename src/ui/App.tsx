@@ -4,6 +4,7 @@ import { configure } from 'mobx';
 
 import { router } from './navigation/router';
 import { StylesProvider } from './providers/styles/Styles.provider';
+import { ToastsProvider } from './providers/toasts/Toasts.provider';
 
 // Настройка для mobx, позволяющая не оборачивать
 // асинхронные изменения стейта в runInAction
@@ -17,7 +18,9 @@ setTimeout(() => {
 function App(): React.ReactElement {
   return (
     <StylesProvider>
-      <RouterProvider router={router} />
+      <ToastsProvider>
+        <RouterProvider router={router} />
+      </ToastsProvider>
     </StylesProvider>
   );
 }
