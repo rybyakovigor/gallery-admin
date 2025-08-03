@@ -21,6 +21,11 @@ class MaterialsStore {
     }
   }
 
+  public findMaterial(id: string): Material | null {
+    const framingType = this.materials.find((predicate) => predicate.id === id);
+    return framingType ?? null;
+  }
+
   public async createMaterial(material: CreateMaterial): Promise<void> {
     try {
       const createdMaterial = await materialsApi.create(material);
