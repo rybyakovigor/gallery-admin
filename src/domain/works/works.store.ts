@@ -11,7 +11,7 @@ class WorksStore {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  public async fetchMWorks(): Promise<void> {
+  public async fetchWorks(): Promise<void> {
     try {
       const works = await worksApi.getAll();
       this.works = works;
@@ -19,6 +19,11 @@ class WorksStore {
       console.error(error);
       throw new Error('Ошибка при загрузке работы');
     }
+  }
+
+  public findWork(id: string): Work | null {
+    const work = this.works.find((predicate) => predicate.id === id);
+    return work ?? null;
   }
 
   public async createWork(body: CreateWork): Promise<void> {

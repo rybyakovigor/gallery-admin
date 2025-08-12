@@ -50,14 +50,7 @@ const HandleEntityModal = ({
   );
 
   return (
-    <Dialog
-      modal
-      footer={footerContent}
-      header={headerElement}
-      style={{ width: '50%' }}
-      visible={visible}
-      onHide={cancel}
-    >
+    <Dialog modal className="w-11 " footer={footerContent} header={headerElement} visible={visible} onHide={cancel}>
       {children}
     </Dialog>
   );

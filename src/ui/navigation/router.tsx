@@ -7,7 +7,7 @@ import Auth from '../pages/auth/Auth';
 import Feedback from '../pages/feedback/Feedback';
 import FramingTypes from '../pages/framing-types/FramingTypes.page';
 import MaterialsPage from '../pages/materials/Materials.page';
-import Works from '../pages/works/Works';
+import WorksPage from '../pages/works/Works.page';
 
 import { PageRoute } from './pages';
 
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: PageRoute.WORKS,
-        element: <Works />,
+        element: <WorksPage />,
       },
       {
         path: PageRoute.MATERIALS,

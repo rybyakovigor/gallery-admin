@@ -19,7 +19,7 @@ class FilesStore {
     }
   }
 
-  public async delete(id: string): Promise<void> {
+  public async remove(id: string): Promise<void> {
     try {
       return await filesApi.delete(id);
     } catch (error) {
