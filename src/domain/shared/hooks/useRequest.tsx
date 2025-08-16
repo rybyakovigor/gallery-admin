@@ -1,9 +1,8 @@
-// Core
 import { useState } from 'react';
 
 interface UseRequest {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  request: (requestHandler: (props: any) => Promise<any>, props: any, callback: () => void) => void;
+  request: (requestHandler: (props: any) => Promise<any>, props: any, callback: (requestResult: any) => void) => void;
   error: string | null;
   isLoading: boolean;
   clearError: () => void;
@@ -13,12 +12,19 @@ export function useRequest(): UseRequest {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const request = (requestHandler: (props: any) => Promise<any>, props: any, callback: () => void): void => {
+  const request = (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    requestHandler: (props: any) => Promise<any>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    props: any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    callback: (requestResult: any) => void
+  ): void => {
     setError(null);
     setIsLoading(true);
     requestHandler(props)
-      .then(() => callback())
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .then((result: any) => callback(result))
       .catch((err) => setError(err.message))
       .finally(() => setIsLoading(false));
   };

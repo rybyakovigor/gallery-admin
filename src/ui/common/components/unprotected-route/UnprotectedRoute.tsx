@@ -1,23 +1,21 @@
-// Core
-import { observer } from 'mobx-react-lite';
 import { Navigate, Outlet } from 'react-router-dom';
 
-// Stores
+import { observer } from 'mobx-react-lite';
+
 import authStore from '~/domain/auth/auth.store';
 
-// Types
-import { Page } from '~/ui/navigation/pages';
+import { PageRoute } from '~/ui/navigation/pages';
 
 interface PropsType {
-  children?: React.ReactNode;
+  children?: React.ReactElement;
 }
-const UnprotectedRoute = ({ children }: PropsType): React.ReactNode => {
+const UnprotectedRoute = ({ children }: PropsType): React.ReactElement => {
   const { isAuth } = authStore;
   if (isAuth) {
-    return <Navigate to={Page.WORKS} replace />;
+    return <Navigate replace to={PageRoute.WORKS} />;
   }
 
-  return children ? children : <Outlet />;
+  return children ?? <Outlet />;
 };
 
 export default observer(UnprotectedRoute);

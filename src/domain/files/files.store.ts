@@ -1,10 +1,7 @@
-// Core
 import { makeAutoObservable } from 'mobx';
 
-// Api
 import filesApi from '~/data/files/files.api';
 
-// Types
 import { AppFile } from './file.schema';
 
 class FilesStore {
@@ -15,16 +12,18 @@ class FilesStore {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async upload(file: File, onProgress?: (props?: any) => void): Promise<AppFile> {
     try {
-      return filesApi.upload(file, onProgress);
+      return await filesApi.upload(file, onProgress);
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при загрузке файла');
     }
   }
 
-  public async delete(id: string): Promise<void> {
+  public async remove(id: string): Promise<void> {
     try {
-      return filesApi.delete(id);
+      return await filesApi.delete(id);
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при удалении файла');
     }
   }

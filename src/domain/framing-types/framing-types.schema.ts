@@ -2,9 +2,7 @@ import { z } from 'zod';
 
 const title = z.string().max(120);
 
-const BaseFramingTypeSchema = z.object({
-  title,
-});
+const BaseFramingTypeSchema = z.object({ title });
 
 export const FramingTypeSchema = BaseFramingTypeSchema.extend({
   id: z.string(),
@@ -13,10 +11,8 @@ export const FramingTypeSchema = BaseFramingTypeSchema.extend({
 });
 
 export const CreateFramingTypeSchema = BaseFramingTypeSchema;
-export const UpdateFramingTypeSchema = CreateFramingTypeSchema.extend({
-  id: z.string(),
-});
+export const UpdateFramingTypeSchema = CreateFramingTypeSchema.extend({ id: z.string() });
 
-export interface CreateFramingType extends z.infer<typeof CreateFramingTypeSchema> {}
-export interface UpdateFramingType extends z.infer<typeof UpdateFramingTypeSchema> {}
-export interface FramingType extends z.infer<typeof FramingTypeSchema> {}
+export type CreateFramingType = z.infer<typeof CreateFramingTypeSchema>;
+export type UpdateFramingType = z.infer<typeof UpdateFramingTypeSchema>;
+export type FramingType = z.infer<typeof FramingTypeSchema>;

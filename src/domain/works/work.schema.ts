@@ -1,10 +1,8 @@
-// Core
 import { z } from 'zod';
 
-// Schemas
-import { MaterialSchema } from '../materials/material.schema';
-import { FramingTypeSchema } from '../framing-types/framing-types.schema';
 import { FileSchema } from '../files/file.schema';
+import { FramingTypeSchema } from '../framing-types/framing-types.schema';
+import { MaterialSchema } from '../materials/material.schema';
 
 const title = z.string().max(120);
 const description = z.string();
@@ -36,16 +34,10 @@ export const CreateWorkSchema = BaseWorkSchema.extend({
   materials: z.array(z.string()),
 });
 
-export const UpdateWorkSchema = CreateWorkSchema.partial().extend({
-  id: z.string(),
-});
+export const UpdateWorkSchema = CreateWorkSchema.partial().extend({ id: z.string() });
 
-export const WorkSchema = BaseWorkSchema.extend({
-  id: z.string(),
-  created_at: z.date(),
-  updated_at: z.date(),
-});
+export const WorkSchema = BaseWorkSchema.extend({ id: z.string(), created_at: z.date(), updated_at: z.date() });
 
-export interface CreateWork extends z.infer<typeof CreateWorkSchema> {}
-export interface UpdateWork extends z.infer<typeof UpdateWorkSchema> {}
-export interface Work extends z.infer<typeof WorkSchema> {}
+export type CreateWork = z.infer<typeof CreateWorkSchema>;
+export type UpdateWork = z.infer<typeof UpdateWorkSchema>;
+export type Work = z.infer<typeof WorkSchema>;

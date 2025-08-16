@@ -1,11 +1,10 @@
-// Http client
 import httpClient from '~/infra/http/client';
 
-// Types
 import { CreateMaterial, Material, UpdateMaterial } from '~/domain/materials/material.schema';
 
 class MaterialsApi {
   private readonly path = 'materials';
+
   public async getAll(): Promise<Material[]> {
     const { data } = await httpClient.get<Material[]>(`${this.path}`);
 

@@ -1,4 +1,4 @@
-ARG NODE_VERSION=20.11.1
+ARG NODE_VERSION=22.17.1
 ARG NODE_IMAGE_NAME=alpine
 ARG CONTAINER_IMAGE=node:${NODE_VERSION}-${NODE_IMAGE_NAME}
 
@@ -18,7 +18,7 @@ RUN yarn install --frozen-lockfile
 COPY . ./
 RUN yarn build
 
-FROM nginx:1.27.0-alpine
+FROM nginx:1.29.0-alpine
 
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist /var/www/html/

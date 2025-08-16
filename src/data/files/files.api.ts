@@ -1,8 +1,7 @@
-// Http client
-import httpClient from '~/infra/http/client';
 import { AxiosRequestConfig } from 'axios';
 
-// Types
+import httpClient from '~/infra/http/client';
+
 import { AppFile } from '~/domain/files/file.schema';
 
 class FilesApi {
@@ -15,8 +14,9 @@ class FilesApi {
 
     const config: AxiosRequestConfig = {
       onUploadProgress: (event) => {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        onProgress && onProgress({ percent: (event.loaded / event.total!) * 100 });
+        if (onProgress && event.total) {
+          onProgress({ percent: (event.loaded / event.total) * 100 });
+        }
       },
     };
     const { data } = await httpClient.post<AppFile>(`${this.path}`, formData, config);

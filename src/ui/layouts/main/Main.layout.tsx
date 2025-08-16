@@ -1,77 +1,55 @@
-// Core
-import React, { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import {
-  BorderOutlined,
-  FileImageOutlined,
-  HddOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  MailOutlined,
-} from '@ant-design/icons';
-import { Layout, Menu, Button } from 'antd';
 
-// Routes
-import { Page } from '../../navigation/pages';
+import { MenuItem } from 'primereact/menuitem';
+import { classNames } from 'primereact/utils';
+
+import { PageRoute } from '../../navigation/pages';
+
+import Menu from './Menu/Menu';
 
 import styles from './styles.module.css';
 
-const { Header, Sider, Content } = Layout;
-
-const MainLayout = (): React.ReactNode => {
-  const [collapsed, setCollapsed] = useState(false);
+const MainLayout = (): React.ReactElement => {
   const navigation = useNavigate();
   const location = useLocation();
 
   return (
-    <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+    <div className={styles['main-container']}>
+      <aside className={styles['sidebar']}>
         <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={[location.pathname]}
-          items={[
-            {
-              key: Page.WORKS,
-              icon: <FileImageOutlined />,
-              label: 'Работы',
-              onClick: () => navigation(Page.WORKS),
-            },
-            {
-              key: Page.MATERIALS,
-              icon: <HddOutlined />,
-              label: 'Материалы',
-              onClick: () => navigation(Page.MATERIALS),
-            },
-            {
-              key: Page.FRAMING_TYPES,
-              icon: <BorderOutlined />,
-              label: 'Оформление',
-              onClick: () => navigation(Page.FRAMING_TYPES),
-            },
-            {
-              key: Page.FEEDBACK,
-              icon: <MailOutlined />,
-              label: 'Обратная связь',
-              onClick: () => navigation(Page.FEEDBACK),
-            },
-          ]}
+          items={[PageRoute.WORKS, PageRoute.MATERIALS, PageRoute.FRAMING_TYPES, PageRoute.FEEDBACK].map((route) => {
+            let menuItem: MenuItem = {};
+            switch (route) {
+              case PageRoute.WORKS:
+                menuItem.icon = 'pi pi-images';
+                menuItem.label = 'Работы';
+                break;
+              case PageRoute.MATERIALS:
+                menuItem.icon = 'pi pi-palette';
+                menuItem.label = 'Материалы';
+                break;
+              case PageRoute.FRAMING_TYPES:
+                menuItem.icon = 'pi pi-th-large';
+                menuItem.label = 'Оформление';
+                break;
+              case PageRoute.FEEDBACK:
+                menuItem.icon = 'pi pi-comment';
+                menuItem.label = 'Обратная связь';
+                break;
+            }
+
+            return {
+              ...menuItem,
+              className: classNames({ [styles['active-item']]: location.pathname === route }),
+              command: () => navigation(route),
+            };
+          })}
         />
-      </Sider>
-      <Layout>
-        <Header className={styles.header}>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            className={styles['menu-button']}
-          />
-        </Header>
-        <Content className={styles.content}>
-          <Outlet />
-        </Content>
-      </Layout>
-    </Layout>
+      </aside>
+      <main className={styles['content']}>
+        <Outlet />
+      </main>
+    </div>
   );
 };
 

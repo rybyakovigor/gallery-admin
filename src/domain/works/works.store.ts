@@ -1,10 +1,7 @@
-// Core
 import { makeAutoObservable } from 'mobx';
 
-// Api
 import worksApi from '~/data/works/works.api';
 
-// Types
 import { CreateWork, UpdateWork, Work } from './work.schema';
 
 class WorksStore {
@@ -14,13 +11,19 @@ class WorksStore {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  public async fetchMWorks(): Promise<void> {
+  public async fetchWorks(): Promise<void> {
     try {
       const works = await worksApi.getAll();
       this.works = works;
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при загрузке работы');
     }
+  }
+
+  public findWork(id: string): Work | null {
+    const work = this.works.find((predicate) => predicate.id === id);
+    return work ?? null;
   }
 
   public async createWork(body: CreateWork): Promise<void> {
@@ -28,6 +31,7 @@ class WorksStore {
       const createdWork = await worksApi.create(body);
       this.works = [...this.works, createdWork];
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при создании работы');
     }
   }
@@ -38,6 +42,7 @@ class WorksStore {
       const index = this.works.findIndex((item) => item.id === body.id);
       this.works = this.works.map((item, i) => (i === index ? updatedMaterial : item));
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при обновлении работы');
     }
   }
@@ -47,6 +52,7 @@ class WorksStore {
       await worksApi.delete(id);
       this.works = this.works.filter((item) => item.id !== id);
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при удалении работы');
     }
   }

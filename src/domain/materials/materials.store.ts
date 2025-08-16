@@ -1,10 +1,7 @@
-// Core
 import { makeAutoObservable } from 'mobx';
 
-// Api
 import materialsApi from '~/data/materials/materials.api';
 
-// Types
 import { CreateMaterial, Material, UpdateMaterial } from './material.schema';
 
 class MaterialsStore {
@@ -19,8 +16,14 @@ class MaterialsStore {
       const materials = await materialsApi.getAll();
       this.materials = materials;
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при загрузке материалов');
     }
+  }
+
+  public findMaterial(id: string): Material | null {
+    const framingType = this.materials.find((predicate) => predicate.id === id);
+    return framingType ?? null;
   }
 
   public async createMaterial(material: CreateMaterial): Promise<void> {
@@ -28,6 +31,7 @@ class MaterialsStore {
       const createdMaterial = await materialsApi.create(material);
       this.materials = [...this.materials, createdMaterial];
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при создании материала');
     }
   }
@@ -38,6 +42,7 @@ class MaterialsStore {
       const index = this.materials.findIndex((item) => item.id === material.id);
       this.materials = this.materials.map((item, i) => (i === index ? updatedMaterial : item));
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при обновлении материала');
     }
   }
@@ -47,6 +52,7 @@ class MaterialsStore {
       await materialsApi.delete(id);
       this.materials = this.materials.filter((item) => item.id !== id);
     } catch (error) {
+      console.error(error);
       throw new Error('Ошибка при удалении материала');
     }
   }

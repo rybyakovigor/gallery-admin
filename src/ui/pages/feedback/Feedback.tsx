@@ -1,15 +1,12 @@
-// Core
-import { observer } from 'mobx-react-lite';
 import { Space, Table, Typography } from 'antd';
+import { observer } from 'mobx-react-lite';
 
-// Stores
 import feedbackStore from '~/domain/feedback/feedback.store';
 
-// Hooks
 import { useFeedbackService } from './useFeedbackService';
 
 const Feedbacks = (): React.ReactElement => {
-  const { feedback, columns, isLoading } = useFeedbackService(feedbackStore);
+  const { columns, feedback, isLoading } = useFeedbackService(feedbackStore);
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
@@ -19,7 +16,7 @@ const Feedbacks = (): React.ReactElement => {
         </Typography.Title>
       </Space>
 
-      <Table dataSource={feedback} columns={columns} pagination={false} loading={isLoading} rowKey={(row) => row.id} />
+      <Table columns={columns} dataSource={feedback} loading={isLoading} pagination={false} rowKey={(row) => row.id} />
     </Space>
   );
 };
