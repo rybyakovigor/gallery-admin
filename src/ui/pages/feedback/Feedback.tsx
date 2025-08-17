@@ -1,23 +1,43 @@
-import { Space, Table, Typography } from 'antd';
+import { useContext, useEffect } from 'react';
+
 import { observer } from 'mobx-react-lite';
 
 import feedbackStore from '~/domain/feedback/feedback.store';
+import { useRequest } from '~/domain/shared/hooks/useRequest';
 
-import { useFeedbackService } from './useFeedbackService';
+import { ToastsContext } from '~/ui/providers/toasts/Toasts.provider';
+
+import FeedbackTable from './tables/FeedbackTable';
 
 const Feedbacks = (): React.ReactElement => {
-  const { columns, feedback, isLoading } = useFeedbackService(feedbackStore);
+  const { feedback, fetchFeedback } = feedbackStore;
 
+  const { error, isLoading, request } = useRequest();
+
+  const toasts = useContext(ToastsContext);
+
+  useEffect(() => {
+    request(fetchFeedback, {}, () => {});
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (error) {
+      toasts?.current?.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: error,
+      });
+    }
+  }, [error, toasts]);
   return (
-    <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <Space style={{ alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-        <Typography.Title level={1} style={{ marginBottom: 6 }}>
-          Обратная связь
-        </Typography.Title>
-      </Space>
-
-      <Table columns={columns} dataSource={feedback} loading={isLoading} pagination={false} rowKey={(row) => row.id} />
-    </Space>
+    <section>
+      <header className="flex justify-content-between align-items-center">
+        <h1>Обратная связь</h1>
+      </header>
+      <FeedbackTable data={feedback} isLoading={isLoading} />
+    </section>
   );
 };
 
