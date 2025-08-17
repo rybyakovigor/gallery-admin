@@ -14,7 +14,8 @@ class FeedbackStore {
   public async fetchFeedback(): Promise<void> {
     try {
       const feedback = await feedbackApi.getAll();
-      this.feedback = feedback;
+      // eslint-disable-next-line sonarjs/no-misleading-array-reverse
+      this.feedback = feedback.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     } catch (error) {
       console.error(error);
       throw new Error('Ошибка при загрузке обратной связи');
