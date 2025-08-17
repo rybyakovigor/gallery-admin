@@ -10,9 +10,10 @@ import authStore from '~/domain/auth/auth.store';
 
 import { ToastsContext } from '~/ui/providers/toasts/Toasts.provider';
 
-import AuthForm from '~/ui/common/components/forms/auth/Auth.form';
-import { authFormSchema } from '~/ui/common/components/forms/auth/auth.form.validations';
 import { PageRoute } from '~/ui/navigation/pages';
+
+import AuthForm from './form/Auth.form';
+import { authFormSchema } from './form/auth.form.validations';
 
 const Auth = (): React.ReactElement => {
   const { isAuth, login } = authStore;

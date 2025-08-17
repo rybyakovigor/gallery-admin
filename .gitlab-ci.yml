@@ -112,8 +112,6 @@ types:
 build:
   stage: checks
   image: $NODE_IMAGE
-  variables:
-    NODE_ENV: production
   script:
     - yarn install --frozen-lockfile
     - yarn build
