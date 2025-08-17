@@ -1,5 +1,5 @@
 variables:
-  NODE_IMAGE: node:20
+  NODE_IMAGE: node:24-slim
 
 stages:
   - setup
@@ -18,10 +18,12 @@ install_dependencies:
     paths:
       - node_modules/
     policy: pull-push
-  only:
-    - merge_requests
-    - develop
-    - master
+  rules:
+    # Запускается для merge request в develop/master
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" &&
+        ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master")
+    # Запускается при пуше в master
+    - if: $CI_COMMIT_BRANCH == "master"
 
 linter:
   stage: checks
@@ -37,10 +39,12 @@ linter:
     paths:
       - node_modules/
     policy: pull
-  only:
-    - merge_requests
-    - develop
-    - master
+  rules:
+    # Запускается для merge request в develop/master
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" &&
+        ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master")
+    # Запускается при пуше в master
+    - if: $CI_COMMIT_BRANCH == "master"
 
 stylelint:
   stage: checks
@@ -56,10 +60,12 @@ stylelint:
     paths:
       - node_modules/
     policy: pull
-  only:
-    - merge_requests
-    - develop
-    - master
+  rules:
+    # Запускается для merge request в develop/master
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" &&
+        ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master")
+    # Запускается при пуше в master
+    - if: $CI_COMMIT_BRANCH == "master"
 
 prettier:
   stage: checks
@@ -75,12 +81,14 @@ prettier:
     paths:
       - node_modules/
     policy: pull
-  only:
-    - merge_requests
-    - develop
-    - master
+  rules:
+    # Запускается для merge request в develop/master
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" &&
+        ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master")
+    # Запускается при пуше в master
+    - if: $CI_COMMIT_BRANCH == "master"
 
-type_checking:
+types:
   stage: checks
   image: $NODE_IMAGE
   script:
@@ -94,10 +102,26 @@ type_checking:
     paths:
       - node_modules/
     policy: pull
-  only:
-    - merge_requests
-    - develop
-    - master
+  rules:
+    # Запускается для merge request в develop/master
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" &&
+        ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master")
+    # Запускается при пуше в master
+    - if: $CI_COMMIT_BRANCH == "master"
+
+build:
+  stage: checks
+  image: $NODE_IMAGE
+  script:
+    - yarn install --frozen-lockfile
+    - yarn build
+  cache: {}
+  rules:
+    # Запускается для merge request в develop/master
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" &&
+        ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master")
+    # Запускается при пуше в master
+    - if: $CI_COMMIT_BRANCH == "master"
 
 deploy:
   stage: deploy
@@ -107,10 +131,12 @@ deploy:
     - linter
     - stylelint
     - prettier
-    - type_checking
+    - types
+    - build
   tags:
     - gallery
     - admin
     - production
-  only:
-    - master
+  rules:
+    # Запускается при пуше в master
+    - if: $CI_COMMIT_BRANCH == "master"

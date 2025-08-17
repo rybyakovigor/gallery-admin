@@ -100,6 +100,7 @@ export default [
       // Отключаем другие конфликтующие правила
       'import/order': 'off',
       'sort-imports': 'off',
+      'prettier/prettier': 'off',
     },
   },
 ];

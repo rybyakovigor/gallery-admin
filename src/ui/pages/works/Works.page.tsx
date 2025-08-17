@@ -13,8 +13,8 @@ import PageLayout from '~/ui/layouts/page/Page.layout';
 
 import { ToastsContext } from '~/ui/providers/toasts/Toasts.provider';
 
-import WorkForm from '~/ui/common/components/forms/work/Work.form';
-import { WorkFormData, workFormSchema } from '~/ui/common/components/forms/work/work.form.validations';
+import WorkForm from './form/Work.form';
+import { WorkFormData, workFormSchema } from './form/work.form.validations';
 
 const WorksPage = (): React.ReactElement => {
   const [currentWorkId, setCurrentWorkId] = useState<string | null>(null);
