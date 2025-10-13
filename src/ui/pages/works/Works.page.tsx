@@ -31,12 +31,35 @@ const WorksPage = (): React.ReactElement => {
 
   const form = useForm<WorkFormData>({
     resolver: zodResolver(workFormSchema),
+    defaultValues: {
+      title: '',
+      description: '',
+      width: 0,
+      height: 0,
+      price: 0,
+      is_sold: false,
+      is_active: false,
+      materials: [],
+      framing_types: [],
+      images: [],
+    },
   });
 
   const createHandler = (): void => {
-    request(createWork, { title: form.getValues('title') }, () => {
-      setActiveEntity(null);
-    });
+    const body = form.getValues();
+
+    request(
+      createWork,
+      {
+        ...body,
+        images: images.map((i) => i.id),
+        materials: body.materials.map((m) => m.id),
+        framing_types: body.framing_types.map((f) => f.id),
+      },
+      () => {
+        setActiveEntity(null);
+      }
+    );
   };
 
   const updateHandler = (id: string): void => {
