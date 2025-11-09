@@ -247,15 +247,19 @@ const WorkForm = ({ form, framingTypes, images, materials }: Props): React.React
           disabled={isLoading}
           maxFileSize={1000000}
           mode="basic"
-          uploadHandler={async (event) => {
-            await Promise.allSettled(
-              event.files.map(async (file) => {
-                request(upload, file, (uploadedFile) => {
-                  form.setValue('images', [...images, uploadedFile]);
-                  uploadRef.current?.setFiles([]);
-                });
-              })
-            );
+          uploadHandler={(event) => {
+            const files = event.files;
+            let uploadedCount = 0;
+
+            files.forEach((file) => {
+              request(upload, file, (uploadedFile) => {
+                form.setValue('images', [...form.getValues('images'), uploadedFile]);
+                uploadedCount++;
+                if (uploadedCount === files.length) {
+                  uploadRef.current?.clear();
+                }
+              });
+            });
           }}
         />
       </div>
